@@ -17,11 +17,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AppFixtures extends Fixture
 {
     private $passwordEncoder;
-    private $productsRepo;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, ProductsRepository $productsRepo) {
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder) {
         $this->passwordEncoder = $passwordEncoder;
-        $this->productsRepo = $productsRepo;
     }
 
     public function load(ObjectManager $manager)

@@ -2,11 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderDetailsRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=OrderDetailsRepository::class)
+ * @ApiResource(
+ *      collectionOperations={"GET"},
+ *      itemOperations={"GET"},
+ *      denormalizationContext={
+ *          "disable_type_enforcement"=true
+ *      }
+ * )
  */
 class OrderDetails
 {
@@ -20,16 +30,20 @@ class OrderDetails
     /**
      * @ORM\ManyToOne(targetEntity=Products::class, inversedBy="orderDetails")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"orders_read"})
      */
     private $product;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"orders_read"})
+     * @Assert\Type(type="integer", message="La quantité de produit choisie doit être une valeur numérique")
      */
     private $quantity;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"orders_read"})
      */
     private $total;
 
@@ -61,7 +75,7 @@ class OrderDetails
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity($quantity): self
     {
         $this->quantity = $quantity;
 

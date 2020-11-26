@@ -2,11 +2,21 @@
 
 namespace App\Entity;
 
-use App\Repository\DeliveryInfosRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DeliveryInfosRepository;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DeliveryInfosRepository::class)
+ * @ApiResource(
+ *     collectionOperations={"GET"},
+ *     itemOperations={"GET"},
+ *     denormalizationContext={
+ *          "disable_type_enforcement"=true
+ *      }
+ * )
  */
 class DeliveryInfos
 {
@@ -19,36 +29,58 @@ class DeliveryInfos
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\NotBlank(message="Veuillez indiquez votre nom")
+     * @Assert\Type(type="string", message="Votre nom doit être une chaine de caractère")
+     * @Assert\Length(min=2, max="50", minMessage="Votre nom doit faire plus de 2 caractères", maxMessage="Votre nom ne doit pas dépasser 50 caractères")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\NotBlank(message="Veuillez indiquez votre prénom")
+     * @Assert\Type(type="string", message="Votre prénom doit être une chaine de caractère")
+     * @Assert\Length(min=2, max="50", minMessage="Votre prénom doit faire plus de 2 caractères", maxMessage="Votre prénom ne doit pas dépasser 50 caractères")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\NotBlank(message="Veuillez indiquez votre adresse email")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=22)
+     * @Groups({"orders_read"})
+     * @Assert\Type(type="string", message="Votre numéro de téléphone doit être une chaine de caractère")
+     * @Assert\NotBlank(message="Veuillez indiquez votre numéro de téléphone")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\Type(type="string", message="Votre adresse doit être une chaine de caractère")
+     * @Assert\NotBlank(message="Veuillez indiquez votre adresse")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\Type(type="string", message="Votre code postal doit être une chaine de caractère")
+     * @Assert\NotBlank(message="Veuillez indiquez votre code postal")
      */
     private $zip;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"orders_read"})
+     * @Assert\Type(type="string", message="Votre ville doit être une chaine de caractère")
+     * @Assert\NotBlank(message="Veuillez indiquez votre ville")
      */
     private $city;
 
@@ -67,7 +99,7 @@ class DeliveryInfos
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname($lastname): self
     {
         $this->lastname = $lastname;
 
@@ -79,7 +111,7 @@ class DeliveryInfos
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname($firstname): self
     {
         $this->firstname = $firstname;
 
@@ -103,7 +135,7 @@ class DeliveryInfos
         return $this->phone;
     }
 
-    public function setPhone(string $phone): self
+    public function setPhone($phone): self
     {
         $this->phone = $phone;
 
@@ -115,7 +147,7 @@ class DeliveryInfos
         return $this->adress;
     }
 
-    public function setAdress(string $adress): self
+    public function setAdress($adress): self
     {
         $this->adress = $adress;
 
@@ -127,7 +159,7 @@ class DeliveryInfos
         return $this->zip;
     }
 
-    public function setZip(string $zip): self
+    public function setZip($zip): self
     {
         $this->zip = $zip;
 
@@ -139,7 +171,7 @@ class DeliveryInfos
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity($city): self
     {
         $this->city = $city;
 
