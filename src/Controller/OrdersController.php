@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Orders;
 use App\Entity\OrderDetails;
 use App\Entity\DeliveryInfos;
+use App\Services\OrderService;
+use App\Services\HttpResponseService;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +19,7 @@ class OrdersController extends AbstractController
     /**
      * @Route("/orders/create", name="orders_create")
      */
-    public function create(Request $request, EntityManagerInterface $manager, ProductsRepository $productsRepo): Response
+    public function create(Request $request, OrderService $orderService, HttpResponseService $responseService): Response
     {
         $panier = $request->get('panier');
         $deliveryInfos = $request->get('delivery');
@@ -25,57 +27,17 @@ class OrdersController extends AbstractController
         $accept = $request->get('accept');
 
         if ($accept == 'true') {
-          $buyer = new DeliveryInfos;
-            $buyer->setLastname($deliveryInfos['lastname'])
-                ->setFirstname($deliveryInfos['firstname'])
-                ->setEmail($deliveryInfos['email'])
-                ->setPhone($deliveryInfos['phone'])
-                ->setAdress($deliveryInfos['adress'])
-                ->setZip($deliveryInfos['zip'])
-                ->setCity($deliveryInfos['city']);
-
-            $manager->persist($buyer);
-
-            $order = new Orders;
-
-            $total = 0;
+            $buyer = $orderService->createBuyer($deliveryInfos);
+            $total = $orderService->getTotal($panier);
+            $order = $orderService->createOrder($total, $infos, $buyer);
             foreach ($panier as $item) {
-                $product = $productsRepo->find($item['id']);
-                $totalItem = $product->getPrice() * $item['quantity'];
-                $total += $totalItem;
+                $orderService->createOrderDetail($item, $order);
             }
 
-            $order->setTotal($total)
-                ->setStatus('EN COURS')
-                ->setConditionsAccept(true)
-                ->setInfos($infos)
-                ->setDeliveryInfos($buyer);
-            
-            $manager->persist($order);
-
-            foreach ($panier as $item) {
-                $orderDetails = new OrderDetails;
-                $product = $productsRepo->find($item['id']);
-                $totalItem = $product->getPrice() * $item['quantity'];
-
-                $orderDetails->setProduct($product)
-                     ->setQuantity($item['quantity'])
-                     ->setTotal($totalItem)
-                     ->setOrders($order);
-                
-                $manager->persist($orderDetails);
-            }
-
-            $manager->flush();
-
-            $response = new Response();
-            $response->setContent('Votre commande à bien été enregistrée');
-            $response->setStatusCode(200);
+            $response = $responseService->create('Votre commande à bien été enregistrée', 200);
             return $response;
         } else {
-            $response = new Response();
-            $response->setContent('Veuillez accepter les conditions d\'utilisation pour valider la commande');
-            $response->setStatusCode(401);
+            $response = $responseService->create('Veuillez accepter les conditions d\'utilisation pour valider la commande', 401);
             return $response;
         }
         
