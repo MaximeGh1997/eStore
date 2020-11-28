@@ -13,8 +13,7 @@ class OrderService {
     private $productsRepo;
     private $manager;
 
-    public function __construct(EntityManagerInterface $manager, ProductsRepository $productsRepo) {
-        $this->manager = $manager;
+    public function __construct(ProductsRepository $productsRepo) {
         $this->productsRepo = $productsRepo;
     }
 
@@ -28,9 +27,6 @@ class OrderService {
               ->setZip($buyerInfos['zip'])
               ->setCity($buyerInfos['city']);
 
-        $this->manager->persist($buyer);
-        $this->manager->flush();
-
         return $buyer;
     }
 
@@ -41,14 +37,11 @@ class OrderService {
               ->setConditionsAccept(true)
               ->setInfos($infos)
               ->setDeliveryInfos($buyer);
-        
-        $this->manager->persist($order);
-        $this->manager->flush();
-
+    
         return $order;
     }
 
-    public function createOrderDetail(array $item, $order) {
+    public function createDetail(array $item, $order) {
         $product = $this->productsRepo->find($item['id']);
         $totalItem = $product->getPrice() * $item['quantity'];
 
@@ -58,8 +51,7 @@ class OrderService {
                 ->setTotal($totalItem)
                 ->setOrders($order);
                 
-        $this->manager->persist($detail);
-        $this->manager->flush();
+        return $detail;
     }
 
     public function getTotal (array $panier) {

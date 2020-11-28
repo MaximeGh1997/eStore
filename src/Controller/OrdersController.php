@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class OrdersController extends AbstractController
@@ -19,7 +20,7 @@ class OrdersController extends AbstractController
     /**
      * @Route("/orders/create", name="orders_create")
      */
-    public function create(Request $request, OrderService $orderService, HttpResponseService $responseService): Response
+    public function create(Request $request, EntityManagerInterface $manager, OrderService $orderService, HttpResponseService $responseService, ValidatorInterface $validator): Response
     {
         $panier = $request->get('panier');
         $deliveryInfos = $request->get('delivery');
@@ -28,17 +29,26 @@ class OrdersController extends AbstractController
 
         if ($accept == 'true') {
             $buyer = $orderService->createBuyer($deliveryInfos);
-            $total = $orderService->getTotal($panier);
-            $order = $orderService->createOrder($total, $infos, $buyer);
-            foreach ($panier as $item) {
-                $orderService->createOrderDetail($item, $order);
+            $errors = $validator->validate($buyer);
+            if(count($errors) > 0) {
+                return new Response($errors);
+            } else {
+                $manager->persist($buyer);
             }
 
-            $response = $responseService->create('Votre commande à bien été enregistrée', 200);
-            return $response;
+            $total = $orderService->getTotal($panier);
+            $order = $orderService->createOrder($total, $infos, $buyer);
+            $manager->persist($order);
+            foreach ($panier as $item) {
+                $detail = $orderService->createDetail($item, $order);
+                $manager->persist($detail);
+            }
+
+            $manager->flush();
+
+            return $responseService->create('Votre commande à bien été enregistrée', 200);
         } else {
-            $response = $responseService->create('Veuillez accepter les conditions d\'utilisation pour valider la commande', 401);
-            return $response;
+            return $responseService->create('Veuillez accepter les conditions d\'utilisation pour valider la commande', 401);
         }
         
     }
