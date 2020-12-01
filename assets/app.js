@@ -7,8 +7,14 @@
 
 import React from 'react'
 import ReactDom from 'react-dom'
+import { HashRouter, Switch, Route } from 'react-router-dom'
+
+import Products from './pages/Products'
+import Navbar from './components/Navbar'
+
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
@@ -16,8 +22,18 @@ import './styles/app.css';
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 const App = () => {
+
+    
+
     return (
-        <h1>Bonjour à tous !!!</h1>
+       <HashRouter>
+           <Navbar/>
+           <main className="container pt-5">
+               <Switch>
+                   <Route path="/products" component={Products}/>
+               </Switch>
+           </main>
+       </HashRouter>
     )
 }
 
