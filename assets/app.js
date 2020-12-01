@@ -10,6 +10,7 @@ import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
 import Products from './pages/Products'
+import Cart from './pages/Cart'
 import Navbar from './components/Navbar'
 
 // any CSS you import will output into a single css file (app.css in this case)
@@ -23,14 +24,13 @@ console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 const App = () => {
 
-    
-
     return (
        <HashRouter>
            <Navbar/>
            <main className="container pt-5">
                <Switch>
                    <Route path="/products" component={Products}/>
+                   <Route path="/cart" component={Cart}/>
                </Switch>
            </main>
        </HashRouter>
