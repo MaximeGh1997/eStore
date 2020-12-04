@@ -19,10 +19,16 @@ const Product = (props) => {
         }
     }
 
-    const handleAddToCart = (id, quantity) => {
+    const handleAddToCart = (product, quantity) => {
         if (quantity > 0) {
-            cartService.add(id, quantity)
-            setQuantity(0) 
+            const total = product.price * quantity
+            const item = {
+                product: product,
+                quantity: quantity,
+                total: total
+            }
+            props.addItem(item)
+            setQuantity(0)
         }
     }
 
@@ -36,8 +42,10 @@ const Product = (props) => {
                     <Card.Text>{props.product.description}</Card.Text>
                     <Card.Text>{props.product.price}€</Card.Text>
                 </Card.Body>
-                <Button variant="primary" onClick={() => remove(quantity)}>-</Button><span>{ quantity }</span><Button variant="primary" onClick={() => add(quantity)}>+</Button>
-                <Button variant="primary" onClick={() => handleAddToCart(props.product, quantity)}>Add to cart</Button>
+                <div className="row justify-content-center">
+                    <Button variant="primary" onClick={() => remove(quantity)}>-</Button><span className="align-self-center ml-3 mr-3"> { quantity } </span><Button variant="primary" onClick={() => add(quantity)}>+</Button>
+                </div>
+                <Button variant="primary" className="mt-2" onClick={() => handleAddToCart(props.product, quantity)}>Add to cart</Button>
             </Card>
         </div>
         </>

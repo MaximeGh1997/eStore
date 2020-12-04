@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import ProductContext from '../contexts/ProductContext'
 import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
 
 const ProductsPage = (props) => {
-    const [products, setProducts] = useState([])
 
-    const fetchProducts = async () => {
-        try {
-            const data = await productsAPI.findAll()
-            setProducts(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchProducts()
-    }, [])
+    const {products, addItem} = useContext(ProductContext)
 
     return (
         <>
@@ -25,7 +14,11 @@ const ProductsPage = (props) => {
             </div>
             <div className="row">
                {products.map(product => (
-                   <Product product={product} />
+                    <Product
+                        key={product.id}
+                        product={product}
+                        addItem={addItem}
+                    />
                 ))} 
             </div>
             
