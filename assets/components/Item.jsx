@@ -1,34 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import cartService from '../services/cartService'
+import React from 'react';
 import Button from 'react-bootstrap/Button'
 
 const Item = (props) => {
-
-    const [quantity, setQuantity] = useState(props.item.quantity)
-    const [total, setTotal] = useState(props.item.total)
     
-    const more = (item, quantity, total) => {
-        quantity++
-        total = item.product.price * quantity
-        setQuantity(quantity)
-        setTotal(total)
-        item.quantity = quantity
-        item.total = total
+    const increase = (item) => {
+        item.quantity++
+        item.total = item.product.price * item.quantity
         props.updateItem(item)
     }
 
-    const less = (item, quantity, total) => {
-        if (quantity == 1) {
-            quantity--
-            setQuantity(quantity)
-            props.removeItem(item)
-        } else if (quantity > 1) {
-            quantity--
-            total = item.product.price * quantity
-            setQuantity(quantity)
-            setTotal(total)
-            item.quantity = quantity
-            item.total = total
+    const decrease = (item) => {
+        if (item.quantity > 1) {
+            item.quantity--
+            item.total = item.product.price * item.quantity
             props.updateItem(item)
         }
     }
@@ -41,8 +25,14 @@ const Item = (props) => {
         <>
         <tr>
             <td>{props.item.product.name}</td>
-            <td><Button variant="primary" onClick={() => less(props.item, quantity, total)}>-</Button><Button variant="primary" onClick={() => more(props.item, quantity, total)}>+</Button>{quantity} x {props.item.product.price}€</td>
-            <td>{total}€ <Button variant="primary" onClick={() => remove(props.item)}>Delete</Button></td>
+            <td>
+                <Button variant="primary" className="mr-2" onClick={() => decrease(props.item)}>-</Button>
+                {props.item.quantity}
+                <Button variant="primary" className="ml-2" onClick={() => increase(props.item)}>+</Button>
+            </td>
+            <td>{props.item.product.price}€</td>
+            <td>{props.item.total}€</td>
+            <td><Button variant="primary" onClick={() => remove(props.item)}>Delete</Button></td>
         </tr>
         </>
     )

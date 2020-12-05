@@ -5,18 +5,15 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
-import productsAPI from './services/productsAPI'
-import ProductContext from './contexts/ProductContext'
 import Products from './pages/Products'
 import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
 import Navbar from './components/Navbar'
 import Cart from './components/Cart'
-import data from './data';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -29,7 +26,6 @@ console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 const App = () => {
 
-    const [products, setProducts] = useState([])
     const [cart, setCart] = useState([])
 
     const addItem = (item) => {
@@ -48,25 +44,11 @@ const App = () => {
         setCart(newCart)
     }
 
-    const fetchProducts = async () => {
-        try {
-            const data = await productsAPI.findAll()
-            setProducts(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        fetchProducts()
-    }, [])
-
     return (
-        <ProductContext.Provider value={{ products, addItem }}>
-            <CartContext.Provider value={{ cart, updateItem, removeItem }}>
+            <CartContext.Provider value={{ cart, addItem, updateItem, removeItem }}>
                 <HashRouter>
                     <Navbar/>
-                    <main className="container pt-5">
+                    <main className="container pt-5 h-100">
                         <Switch>
                             <Route path="/products" component={Products}/>
                             <Route path="/cart" component={CartPage}/>
@@ -75,8 +57,6 @@ const App = () => {
                     </main>
                 </HashRouter>
             </CartContext.Provider>
-        </ProductContext.Provider>
-       
     )
 }
 

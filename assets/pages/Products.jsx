@@ -1,11 +1,25 @@
 import React, { useEffect, useState, useContext } from 'react'
-import ProductContext from '../contexts/ProductContext'
+import CartContext from '../contexts/CartContext'
 import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
 
 const ProductsPage = (props) => {
 
-    const {products, addItem} = useContext(ProductContext)
+    const [products, setProducts] = useState([])
+    const {addItem} = useContext(CartContext)
+
+    const fetchProducts = async () => {
+        try {
+            const data = await productsAPI.findAll()
+            setProducts(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
 
     return (
         <>
