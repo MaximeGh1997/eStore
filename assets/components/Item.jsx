@@ -4,9 +4,11 @@ import Button from 'react-bootstrap/Button'
 const Item = (props) => {
     
     const increase = (item) => {
-        item.quantity++
-        item.total = item.product.price * item.quantity
-        props.updateItem(item)
+        if (item.quantity < 15) {
+            item.quantity++
+            item.total = item.product.price * item.quantity
+            props.updateItem(item)  
+        }
     }
 
     const decrease = (item) => {

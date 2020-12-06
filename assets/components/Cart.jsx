@@ -24,13 +24,15 @@ const Cart = (props) => {
         }
     }
 
+    const handleClick = () => {
+        const shopping = document.querySelectorAll('.shopping')[0]
+        shopping.classList.toggle('open')
+    }
+
     return (
         <>
         {props.isOnPage ?
             <>
-            <div className="d-flex justify-content-start align-items-center">
-                <h1 className="mb-3">My cart</h1>
-            </div>
             {isEmpty() ?
                 <>
                 <div className="empty-cart">
@@ -72,7 +74,50 @@ const Cart = (props) => {
             </>
         :
             <>
-            
+                <div className="shopping">
+                    <div id="cartBtn" onClick={() => handleClick()}><i className="fas fa-shopping-basket"></i><span>{cart.length}</span></div>
+                
+                    <div className="cart">
+                        <div className="command">
+                            {isEmpty() ?
+                                <div>Votre panier est vide</div>
+                            :
+                                <div className="list">
+                                    <Table striped hover>
+                                        <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Quantity</th>
+                                                <th>Price</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {cart.map(item => (
+                                                <>
+                                                    <Item
+                                                        item={item}
+                                                        key={item.product.id}
+                                                        updateItem={updateItem}
+                                                        removeItem={removeItem}
+                                                    />
+                                                </>
+                                            ))}
+                                            <tr>
+                                                <td>Cart's total</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>{getTotal()} €</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </>
         }
         </>

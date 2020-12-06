@@ -7,8 +7,10 @@ const Product = (props) => {
     const [quantity, setQuantity] = useState(0)
 
     const increase = (quantity) => {
-        quantity++
-        setQuantity(quantity)
+        if (quantity < 15) {
+            quantity++
+            setQuantity(quantity)  
+        }
     }
 
     const decrease = (quantity) => {
@@ -28,6 +30,9 @@ const Product = (props) => {
             }
             props.addItem(item)
             setQuantity(0)
+
+            const shopping = document.querySelectorAll('.shopping')[0]
+            shopping.classList.add('open')
         }
     }
 
