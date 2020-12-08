@@ -17,13 +17,13 @@ class OrderService {
         $this->productsRepo = $productsRepo;
     }
 
-    public function createBuyer(array $buyerInfos) {
+    public function createBuyer($buyerInfos) {
         $buyer = new DeliveryInfos;
-        $buyer->setLastname($buyerInfos['lastname'])
-              ->setFirstname($buyerInfos['firstname'])
+        $buyer->setLastname($buyerInfos['lastName'])
+              ->setFirstname($buyerInfos['firstName'])
               ->setEmail($buyerInfos['email'])
               ->setPhone($buyerInfos['phone'])
-              ->setAdress($buyerInfos['adress'])
+              ->setAdress($buyerInfos['address'])
               ->setZip($buyerInfos['zip'])
               ->setCity($buyerInfos['city']);
 
@@ -41,8 +41,8 @@ class OrderService {
         return $order;
     }
 
-    public function createDetail(array $item, $order) {
-        $product = $this->productsRepo->find($item['id']);
+    public function createDetail($item, $order) {
+        $product = $this->productsRepo->find($item['product']['id']);
         $totalItem = $product->getPrice() * $item['quantity'];
 
         $detail = new OrderDetails;
@@ -54,10 +54,10 @@ class OrderService {
         return $detail;
     }
 
-    public function getTotal (array $panier) {
+    public function getTotal ($cart) {
         $total = 0;
-        foreach ($panier as $item) {
-            $product = $this->productsRepo->find($item['id']);
+        foreach ($cart as $item) {
+            $product = $this->productsRepo->find($item['product']['id']);
             $totalItem = $product->getPrice() * $item['quantity'];
             $total += $totalItem;
         }

@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -22,24 +23,29 @@ class OrdersController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $manager, OrderService $orderService, HttpResponseService $responseService, ValidatorInterface $validator): Response
     {
-        $panier = $request->get('panier');
-        $deliveryInfos = $request->get('delivery');
-        $infos = $request->get('infos');
-        $accept = $request->get('accept');
+        $cart = json_decode($request->get('cart'), TRUE);
+        $buyerInfos = json_decode($request->get('buyer'), TRUE);
+        $infos = $buyerInfos['infos'];
+        $checked = $request->get('checked');
 
-        if ($accept == 'true') {
-            $buyer = $orderService->createBuyer($deliveryInfos);
+        if ($checked == true) {
+            $buyer = $orderService->createBuyer($buyerInfos);
             $errors = $validator->validate($buyer);
             if(count($errors) > 0) {
-                return new Response($errors);
+               /* $data = [
+                    'type' => 'validation_error',
+                    'title' =>'There was a validation error',
+                    'errors' => json_encode($errors)
+                ];
+                return new JsonResponse($data, 400);*/
             } else {
                 $manager->persist($buyer);
             }
 
-            $total = $orderService->getTotal($panier);
+            $total = $orderService->getTotal($cart);
             $order = $orderService->createOrder($total, $infos, $buyer);
             $manager->persist($order);
-            foreach ($panier as $item) {
+            foreach ($cart as $item) {
                 $detail = $orderService->createDetail($item, $order);
                 $manager->persist($detail);
             }
