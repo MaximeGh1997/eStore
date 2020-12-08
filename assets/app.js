@@ -5,7 +5,7 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
@@ -28,25 +28,41 @@ console.log('Hello Webpack Encore! Edit me in assets/app.js');
 const App = () => {
 
     const [cart, setCart] = useState([])
-
+    
     const addItem = (item) => {
-        setCart([...cart, item])
+        const newCart = [...cart]
+        newCart.push(item)
+        setCart(newCart)
+        localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
     const updateItem = (item) => {
         const newCart = [...cart]
         newCart.item = item
         setCart(newCart)
+        localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
     const removeItem = (item) => {
         const newCart = [...cart]
         newCart.splice(newCart.indexOf(item), 1)
         setCart(newCart)
+        localStorage.setItem('cart', JSON.stringify(newCart))
     }
 
+    const clearCart = () => {
+        setCart([])
+        localStorage.removeItem('cart')
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('cart')) {
+            setCart(JSON.parse(localStorage.getItem('cart')))
+        }
+    }, [])
+
     return (
-            <CartContext.Provider value={{ cart, addItem, updateItem, removeItem }}>
+            <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
                 <HashRouter>
                     <Navbar/>
                     <main className="container pt-5 h-100">

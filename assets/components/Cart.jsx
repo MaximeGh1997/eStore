@@ -6,7 +6,7 @@ import Item from './Item'
 
 const Cart = (props) => {
 
-    const {cart, updateItem, removeItem} = useContext(CartContext)
+    const {cart, updateItem, removeItem, clearCart} = useContext(CartContext)
 
     const getTotal = () => {
         var cartTotal = 0
@@ -40,6 +40,7 @@ const Cart = (props) => {
                 </div>
                 </>
             :
+            <>
             <Table striped hover>
                 <thead>
                     <tr>
@@ -70,6 +71,8 @@ const Cart = (props) => {
                     </tr>
                 </tbody>
             </Table>
+            <Button variant="primary" onClick={() => {if(window.confirm('Are you sure to clear your cart ?')){clearCart()}}}>Clear cart</Button>
+            </>
             }
             </>
         :
@@ -113,6 +116,7 @@ const Cart = (props) => {
                                             </tr>
                                         </tbody>
                                     </Table>
+                                    <Button variant="primary" onClick={() => {if(window.confirm('Are you sure to clear your cart ?')){clearCart()}}}>Clear cart</Button>
                                 </div>
                             }
                         </div>

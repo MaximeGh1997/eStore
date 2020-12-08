@@ -34,7 +34,7 @@ const Item = (props) => {
             </td>
             <td>{props.item.product.price}€</td>
             <td>{props.item.total}€</td>
-            <td><Button variant="primary" onClick={() => remove(props.item)}>Delete</Button></td>
+            <td><Button variant="primary" onClick={() => {if(window.confirm('Are you sure to remove this item ?')){remove(props.item)}}}>Delete</Button></td>
         </tr>
         </>
     )
