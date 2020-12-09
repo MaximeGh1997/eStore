@@ -14,6 +14,9 @@ import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
 import Navbar from './components/Navbar'
 import Cart from './components/Cart'
+import LoginPage from './pages/admin/LoginPage'
+import authAPI from './services/authAPI'
+import AuthContext from './contexts/AuthContext'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -27,6 +30,7 @@ console.log('Hello Webpack Encore! Edit me in assets/app.js');
 
 const App = () => {
 
+    // Cart context
     const [cart, setCart] = useState([])
     
     const addItem = (item) => {
@@ -55,6 +59,13 @@ const App = () => {
         localStorage.removeItem('cart')
     }
 
+    // Auth context
+    const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated())
+    const authContextValue = {
+        isAuthenticated: isAuthenticated,
+        setIsAuthenticated: setIsAuthenticated
+    }
+
     useEffect(() => {
         if (localStorage.getItem('cart')) {
             setCart(JSON.parse(localStorage.getItem('cart')))
@@ -62,18 +73,21 @@ const App = () => {
     }, [])
 
     return (
-            <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
-                <HashRouter>
-                    <Navbar/>
-                    <main className="container pt-5 h-100">
-                        <Switch>
-                            <Route path="/products" component={Products}/>
-                            <Route path="/cart" component={CartPage}/>
-                        </Switch>
-                        <Cart isOnPage = {false} />
-                    </main>
-                </HashRouter>
-            </CartContext.Provider>
+            <AuthContext.Provider value={authContextValue}>
+                <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
+                    <HashRouter>
+                        <Navbar/>
+                        <main className="container pt-5 h-100">
+                            <Switch>
+                                <Route path="/products" component={Products}/>
+                                <Route path="/cart" component={CartPage}/>
+                                <Route path="/admin" component={LoginPage}/>
+                            </Switch>
+                            <Cart isOnPage = {false} />
+                        </main>
+                    </HashRouter>
+                </CartContext.Provider>
+            </AuthContext.Provider>
     )
 }
 
