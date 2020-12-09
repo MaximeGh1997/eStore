@@ -19,8 +19,8 @@ class OrderService {
 
     public function createBuyer($buyerInfos) {
         $buyer = new DeliveryInfos;
-        $buyer->setLastname($buyerInfos['lastName'])
-              ->setFirstname($buyerInfos['firstName'])
+        $buyer->setLastname($buyerInfos['lastname'])
+              ->setFirstname($buyerInfos['firstname'])
               ->setEmail($buyerInfos['email'])
               ->setPhone($buyerInfos['phone'])
               ->setAdress($buyerInfos['address'])
