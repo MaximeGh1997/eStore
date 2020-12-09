@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import CartContext from '../contexts/CartContext'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Item from './Item'
+import {Link} from 'react-router-dom'
 
 const Cart = (props) => {
 
@@ -56,7 +57,7 @@ const Cart = (props) => {
                         <>
                             <Item
                                 item={item}
-                                key={item.product.id}
+                                key={item}
                                 updateItem={updateItem}
                                 removeItem={removeItem}
                             />
@@ -117,6 +118,7 @@ const Cart = (props) => {
                                         </tbody>
                                     </Table>
                                     <Button variant="primary" onClick={() => {if(window.confirm('Are you sure to clear your cart ?')){clearCart()}}}>Clear cart</Button>
+                                    <Link to="/cart" className="btn btn-primary ml-2">Validate my cart</Link>
                                 </div>
                             }
                         </div>

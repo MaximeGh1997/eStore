@@ -2,16 +2,24 @@ import React, { useEffect, useState, useContext } from 'react'
 import CartContext from '../contexts/CartContext'
 import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
+import Pagination from '../components/Pagination'
 
 const ProductsPage = (props) => {
 
     const [products, setProducts] = useState([])
+
+    //pour pagination
+    const [currentPage, setCurrentPage] = useState(1)
+    const [totalItems, setTotalItems] = useState(0)
+    const itemsPerPage = 5
+
     const {addItem} = useContext(CartContext)
 
     const fetchProducts = async () => {
         try {
-            const data = await productsAPI.findAll()
-            setProducts(data)
+            const data = await productsAPI.findByPage(itemsPerPage, currentPage)
+            setProducts(data['hydra:member'])
+            setTotalItems(data['hydra:totalItems'])
         } catch (error) {
             console.log(error)
         }
@@ -19,7 +27,12 @@ const ProductsPage = (props) => {
 
     useEffect(() => {
         fetchProducts()
-    }, [])
+    }, [currentPage])
+
+    const handlePageChange = (page) => {
+        setProducts([])
+        setCurrentPage(page)
+    }
 
     return (
         <>
@@ -35,7 +48,12 @@ const ProductsPage = (props) => {
                     />
                 ))} 
             </div>
-            
+            <Pagination
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                length={totalItems}
+                onPageChanged={handlePageChange}
+            />            
         </>
     )
 }

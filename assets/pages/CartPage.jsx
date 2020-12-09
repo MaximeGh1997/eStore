@@ -184,7 +184,7 @@ const CartPage = (props) => {
                         <label className="form-check-label" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-success">Send</button>
+                        <button type="submit" className="btn btn-success mb-5">Send</button>
                     </div>
                 </form>
             </>
