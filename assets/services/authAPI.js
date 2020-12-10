@@ -16,6 +16,18 @@ function authenticate (credentials) {
                 })
 }
 
+function setup(){
+    const token = localStorage.getItem("authToken")
+
+    if(token){
+        const jwtData = jwtDecode(token)
+        
+        if((jwtData.exp * 1000) > new Date().getTime()){
+            axios.defaults.headers["Authorization"]="Bearer " + token
+        }
+    }
+}
+
 function isAuthenticated () {
     const token = localStorage.getItem("authToken")
     if (token) {
@@ -32,7 +44,7 @@ function isAdmin () {
     const token = localStorage.getItem("authToken")
     if (token) {
         const jwtData = jwtDecode(token)
-        if (jwtData.roles.includes('ROLE_ADMIN')) {
+        if ((jwtData.exp * 1000) > new Date().getTime() && jwtData.roles.includes('ROLE_ADMIN')) {
             return true
         }
         return false
@@ -42,6 +54,7 @@ function isAdmin () {
 
 export default {
     authenticate: authenticate,
+    setup: setup,
     isAuthenticated: isAuthenticated,
     isAdmin: isAdmin,
     logout: logout

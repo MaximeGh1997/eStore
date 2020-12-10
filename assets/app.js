@@ -29,6 +29,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // import $ from 'jquery';
 
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
+authAPI.setup()
 
 const App = () => {
 

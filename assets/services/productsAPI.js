@@ -10,7 +10,12 @@ function findAll () {
                 .then(response => response.data['hydra:member'])
 }
 
+function deleteProduct (id) {
+    return axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+}
+
 export default {
     findAll: findAll,
-    findByPage : findByPage
+    findByPage : findByPage,
+    deleteProduct: deleteProduct
 }

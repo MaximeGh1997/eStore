@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Pagination from '../../components/Pagination'
 import productsAPI from '../../services/productsAPI'
+import moment from 'moment'
 
 const ProductsPage = (props) => {
 
@@ -27,10 +28,27 @@ const ProductsPage = (props) => {
         fetchProducts()
     }, [currentPage])
 
+    const handleDelete = async (id) => {
+        const originalProducts = [...products]
+        setProducts(products.filter(product => product.id !== id))
+
+        try {
+            await productsAPI.deleteProduct(id)
+            console.log('Produit supprimé')
+            // toast
+        } catch (error) {
+            console.log(error)
+            // toast
+            setProducts(originalProducts)
+        }
+    }
+
     const handlePageChange = (page) => {
         setProducts([])
         setCurrentPage(page)
     }
+
+    const formatDate = (str) => moment(str).format('DD/MM/YYYY à HH:mm')
 
     return (
         <>
@@ -43,9 +61,9 @@ const ProductsPage = (props) => {
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Prix</th>
-                        <th>Date d'ajout</th>
-                        <th>Actions</th>
+                        <th className="text-center">Prix</th>
+                        <th className="text-center">Date d'ajout</th>
+                        <th className="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,9 +71,12 @@ const ProductsPage = (props) => {
                         <tr key={product.id}>
                             <td>{product.id}</td>
                             <td>{product.name}</td>
-                            <td>{product.price}€</td>
-                            <td>{product.createdAt}</td>
-                            <td></td>
+                            <td className="text-center">{product.price}€</td>
+                            <td className="text-center">{formatDate(product.createdAt)}</td>
+                            <td className="text-center">
+                                <Button variant="warning" className="mr-2"><i className="fas fa-edit"></i></Button>
+                                <Button variant="danger" onClick={() => {if(window.confirm('Are you sure to delete this product ?')) {handleDelete(product.id)}}}><i className="fas fa-trash"></i></Button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
