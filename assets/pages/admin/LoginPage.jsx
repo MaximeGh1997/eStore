@@ -5,7 +5,7 @@ import AuthContext from '../../contexts/AuthContext'
 
 const LoginPage = (props) => {
 
-    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext)
+    const {isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin} = useContext(AuthContext)
 
     const [credentials, setCredentials] = useState({
         username: "",
@@ -24,6 +24,9 @@ const LoginPage = (props) => {
         try {
             await authAPI.authenticate(credentials)
             setIsAuthenticated(true)
+            if (authAPI.isAdmin()) {
+                setIsAdmin(true)
+            }
             setError('')
             console.log('Vous êtes connecté')
         } catch (error) {
@@ -34,6 +37,7 @@ const LoginPage = (props) => {
     const handleLogout = () => {
         authAPI.logout()
         setIsAuthenticated(false)
+        setIsAdmin(false)
     }
 
     return (

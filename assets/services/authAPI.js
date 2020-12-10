@@ -1,4 +1,5 @@
 import axios from 'axios'
+import jwtDecode from 'jwt-decode'
 
 function logout () {
     localStorage.removeItem("authToken")
@@ -11,6 +12,7 @@ function authenticate (credentials) {
                 .then(token => {
                     localStorage.setItem("authToken", token)
                     axios.defaults.headers['Authorization']="Bearer " + token
+                    console.log(jwtDecode(token))
                     return true
                 })
 }
@@ -18,7 +20,23 @@ function authenticate (credentials) {
 function isAuthenticated () {
     const token = localStorage.getItem("authToken")
     if (token) {
-        return true
+        const jwtData = jwtDecode(token)
+        if ((jwtData.exp * 1000) > new Date().getTime()) {
+            return true
+        }
+        return false
+    }
+    return false
+}
+
+function isAdmin () {
+    const token = localStorage.getItem("authToken")
+    if (token) {
+        const jwtData = jwtDecode(token)
+        if (jwtData.roles.includes('ROLE_ADMIN')) {
+            return true
+        }
+        return false
     }
     return false
 }
@@ -26,5 +44,6 @@ function isAuthenticated () {
 export default {
     authenticate: authenticate,
     isAuthenticated: isAuthenticated,
+    isAdmin: isAdmin,
     logout: logout
 }

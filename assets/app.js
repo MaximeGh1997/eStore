@@ -17,6 +17,7 @@ import Cart from './components/Cart'
 import LoginPage from './pages/admin/LoginPage'
 import authAPI from './services/authAPI'
 import AuthContext from './contexts/AuthContext'
+import PrivateRoute from './components/PrivateRoute'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -61,9 +62,13 @@ const App = () => {
 
     // Auth context
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated())
+    const [isAdmin, setIsAdmin] = useState(authAPI.isAdmin())
+
     const authContextValue = {
         isAuthenticated: isAuthenticated,
-        setIsAuthenticated: setIsAuthenticated
+        setIsAuthenticated: setIsAuthenticated,
+        isAdmin: isAdmin,
+        setIsAdmin: setIsAdmin
     }
 
     useEffect(() => {
@@ -82,6 +87,9 @@ const App = () => {
                                 <Route path="/products" component={Products}/>
                                 <Route path="/cart" component={CartPage}/>
                                 <Route path="/admin" component={LoginPage}/>
+                                <PrivateRoute path="" />
+                                <PrivateRoute path="" />
+                                <PrivateRoute path="" />
                             </Switch>
                             <Cart isOnPage = {false} />
                         </main>

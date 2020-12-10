@@ -1,7 +1,18 @@
 import React from 'react'
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import AuthContext from '../contexts/AuthContext'
+import authAPI from '../services/authAPI'
 
 const Nav = () => {
+
+    const {isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin} = useContext(AuthContext)
+    
+    const handleLogout = () => {
+        authAPI.logout()
+        setIsAuthenticated(false)
+        setIsAdmin(false)
+    }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,7 +28,28 @@ const Nav = () => {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/cart">My cart</NavLink>
                     </li>
+                    {isAdmin ?
+                        <>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="#">My products</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="#">Lasts orders</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="#">All orders</NavLink>
+                            </li>
+                        </>
+                    :
+                        <>
+                        </>
+                    }
                 </ul>
+                {isAuthenticated ?
+                    <button className="btn btn-danger" onClick={() => handleLogout()}>Déconnexion</button>
+                :
+                    <></>
+                }
             </div>
         </nav>
     )
