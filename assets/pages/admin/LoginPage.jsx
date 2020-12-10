@@ -28,7 +28,7 @@ const LoginPage = (props) => {
                 setIsAdmin(true)
             }
             setError('')
-            console.log('Vous êtes connecté')
+            //toast
         } catch (error) {
             setError('Nom d\'utilisateur ou mot de passe incorrect !')
         }

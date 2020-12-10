@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
-import Products from './pages/Products'
+import ProductsPage from './pages/ProductsPage'
 import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
 import Navbar from './components/Navbar'
@@ -18,6 +18,7 @@ import LoginPage from './pages/admin/LoginPage'
 import authAPI from './services/authAPI'
 import AuthContext from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
+import AdminProductsPage from './pages/admin/ProductsPage'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -84,10 +85,10 @@ const App = () => {
                         <Navbar/>
                         <main className="container pt-5 h-100">
                             <Switch>
-                                <Route path="/products" component={Products}/>
+                                <Route path="/products" component={ProductsPage}/>
                                 <Route path="/cart" component={CartPage}/>
-                                <Route path="/admin" component={LoginPage}/>
-                                <PrivateRoute path="" />
+                                <Route path="/admin/login" component={LoginPage}/>
+                                <PrivateRoute path="/admin/products" component={AdminProductsPage} />
                                 <PrivateRoute path="" />
                                 <PrivateRoute path="" />
                             </Switch>

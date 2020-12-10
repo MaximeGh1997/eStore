@@ -31,7 +31,7 @@ const Nav = () => {
                     {isAdmin ?
                         <>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">My products</NavLink>
+                                <NavLink className="nav-link" to="/admin/products">My products</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="#">Lasts orders</NavLink>

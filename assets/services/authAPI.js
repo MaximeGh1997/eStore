@@ -12,7 +12,6 @@ function authenticate (credentials) {
                 .then(token => {
                     localStorage.setItem("authToken", token)
                     axios.defaults.headers['Authorization']="Bearer " + token
-                    console.log(jwtDecode(token))
                     return true
                 })
 }
