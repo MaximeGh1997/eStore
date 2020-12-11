@@ -21,6 +21,7 @@ import PrivateRoute from './components/PrivateRoute'
 import AdminProductsPage from './pages/admin/ProductsPage'
 import AdminProductFormPage from './pages/admin/ProductFormPage'
 import AdminOrdersPage from './pages/admin/OrdersPage'
+import AdminOrderPage from './pages/admin/OrderPage'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -93,8 +94,8 @@ const App = () => {
                                 <Route path="/admin/login" component={AdminLoginPage}/>
                                 <PrivateRoute path="/admin/products/:id" component={AdminProductFormPage}/>
                                 <PrivateRoute path="/admin/products" component={AdminProductsPage} />
+                                <PrivateRoute path="/admin/orders/:id" component={AdminOrderPage} />
                                 <PrivateRoute path="/admin/orders" component={AdminOrdersPage} />
-                                <PrivateRoute path="" />
                                 <PrivateRoute path="" />
                             </Switch>
                             <Cart isOnPage = {false} />

@@ -24,8 +24,14 @@ function findAll () {
                 .then(response => response.data['hydra:member'])
 }
 
+function find (id) {
+    return axios.get(`http://127.0.0.1:8000/api/orders/${id}`)
+                .then(response => response.data)
+}
+
 export default {
     send: send,
     findByPage: findByPage,
-    findAll: findAll
+    findAll: findAll,
+    find: find
 }

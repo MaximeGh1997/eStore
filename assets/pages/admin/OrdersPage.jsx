@@ -105,7 +105,7 @@ const OrdersPage = (props) => {
                             <td>{order.deliveryInfos.city}</td>
                             <td>{order.status}</td>
                             <td className="text-center">
-                                <Link to="/" className="btn btn-success"><i className="fas fa-eye"></i></Link>
+                                <Link to={`/admin/orders/${order.id}`} className="btn btn-success"><i className="fas fa-eye"></i></Link>
                             </td>
                         </tr>
                     ))}
