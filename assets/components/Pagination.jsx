@@ -30,4 +30,11 @@ const Pagination = (props) => {
     )
 }
 
+Pagination.getData = (items, currentPage, itemsPerPage) => {
+    // permet de découper un tableau: arr.slice(début, fin)
+    const start = currentPage * itemsPerPage - itemsPerPage
+    //              3         *     10       -  10          =  20
+    return items.slice(start, start + itemsPerPage)
+}
+
 export default Pagination

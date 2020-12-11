@@ -14,6 +14,18 @@ function send (cart, buyer, checked) {
     .then(response => response.data)
 }
 
+function findByPage (itemsPerPage, currentPage) {
+    return axios.get(`http://127.0.0.1:8000/api/orders/?pagination=true&count=${itemsPerPage}&page=${currentPage}`)
+                .then(response => response.data)
+}
+
+function findAll () {
+    return axios.get('http://127.0.0.1:8000/api/orders')
+                .then(response => response.data['hydra:member'])
+}
+
 export default {
-    send: send
+    send: send,
+    findByPage: findByPage,
+    findAll: findAll
 }

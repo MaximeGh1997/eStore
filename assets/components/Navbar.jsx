@@ -34,10 +34,10 @@ const Nav = () => {
                                 <NavLink className="nav-link" to="/admin/products">My products</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">Lasts orders</NavLink>
+                                <NavLink className="nav-link" to="/admin/orders">All orders</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="#">All orders</NavLink>
+                                <NavLink className="nav-link" to="#">Lasts orders</NavLink>
                             </li>
                         </>
                     :

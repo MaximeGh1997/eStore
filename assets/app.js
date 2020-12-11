@@ -20,6 +20,7 @@ import AuthContext from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
 import AdminProductsPage from './pages/admin/ProductsPage'
 import AdminProductFormPage from './pages/admin/ProductFormPage'
+import AdminOrdersPage from './pages/admin/OrdersPage'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -92,7 +93,7 @@ const App = () => {
                                 <Route path="/admin/login" component={AdminLoginPage}/>
                                 <PrivateRoute path="/admin/products/:id" component={AdminProductFormPage}/>
                                 <PrivateRoute path="/admin/products" component={AdminProductsPage} />
-                                <PrivateRoute path="" />
+                                <PrivateRoute path="/admin/orders" component={AdminOrdersPage} />
                                 <PrivateRoute path="" />
                                 <PrivateRoute path="" />
                             </Switch>
