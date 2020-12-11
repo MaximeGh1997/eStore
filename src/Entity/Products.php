@@ -51,11 +51,11 @@ class Products
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Groups({"products_read"})
      * @Groups({"orders_read"})
      * @Assert\NotBlank(message="Veuillez donner un prix à votre produit")
-     * @Assert\Type(type="integer", message="Le prix du produit doit être numérique")
+     * @Assert\Type(type="numeric", message="Le prix du produit doit être numérique")
      */
     private $price;
 

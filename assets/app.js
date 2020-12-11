@@ -14,11 +14,12 @@ import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
 import Navbar from './components/Navbar'
 import Cart from './components/Cart'
-import LoginPage from './pages/admin/LoginPage'
+import AdminLoginPage from './pages/admin/LoginPage'
 import authAPI from './services/authAPI'
 import AuthContext from './contexts/AuthContext'
 import PrivateRoute from './components/PrivateRoute'
 import AdminProductsPage from './pages/admin/ProductsPage'
+import AdminProductFormPage from './pages/admin/ProductFormPage'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -88,8 +89,10 @@ const App = () => {
                             <Switch>
                                 <Route path="/products" component={ProductsPage}/>
                                 <Route path="/cart" component={CartPage}/>
-                                <Route path="/admin/login" component={LoginPage}/>
+                                <Route path="/admin/login" component={AdminLoginPage}/>
+                                <PrivateRoute path="/admin/products/:id" component={AdminProductFormPage}/>
                                 <PrivateRoute path="/admin/products" component={AdminProductsPage} />
+                                <PrivateRoute path="" />
                                 <PrivateRoute path="" />
                                 <PrivateRoute path="" />
                             </Switch>

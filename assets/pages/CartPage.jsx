@@ -112,6 +112,7 @@ const CartPage = (props) => {
                         error={errors.lastname}
                         value={buyer.lastname}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="text"
@@ -121,6 +122,7 @@ const CartPage = (props) => {
                         error={errors.firstname}
                         value={buyer.firstname}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="email"
@@ -130,6 +132,7 @@ const CartPage = (props) => {
                         error={errors.email}
                         value={buyer.email}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="text"
@@ -139,6 +142,7 @@ const CartPage = (props) => {
                         error={errors.phone}
                         value={buyer.phone}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="text"
@@ -148,6 +152,7 @@ const CartPage = (props) => {
                         error={errors.adress}
                         value={buyer.address}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="text"
@@ -157,6 +162,7 @@ const CartPage = (props) => {
                         error={errors.zip}
                         value={buyer.zip}
                         onChange={handleChange}
+                        required='required'
                     />
                     <Field
                         type="text"
@@ -166,6 +172,7 @@ const CartPage = (props) => {
                         error={errors.city}
                         value={buyer.city}
                         onChange={handleChange}
+                        required='required'
                     />
                     <div className="form-group">
                         <label htmlFor="infos">Informations supplémentaire</label>

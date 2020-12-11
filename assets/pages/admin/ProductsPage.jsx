@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Pagination from '../../components/Pagination'
 import productsAPI from '../../services/productsAPI'
 import moment from 'moment'
+import {Link} from 'react-router-dom'
 
 const ProductsPage = (props) => {
 
@@ -33,7 +34,7 @@ const ProductsPage = (props) => {
         setProducts(products.filter(product => product.id !== id))
 
         try {
-            await productsAPI.deleteProduct(id)
+            await productsAPI.delete(id)
             console.log('Produit supprimé')
             // toast
         } catch (error) {
@@ -55,7 +56,7 @@ const ProductsPage = (props) => {
             <div className="d-flex justify-content-start align-items-center">
                 <h1 className="mb-4">Administration des produits</h1>
             </div>
-            <Button variant="success" className="mb-3">Ajouter un produit</Button>
+            <Link to="/admin/products/new" className="btn btn-success mb-2">Ajouter un produit</Link>
             <Table striped hover>
                 <thead>
                     <tr>
@@ -74,7 +75,7 @@ const ProductsPage = (props) => {
                             <td className="text-center">{product.price}€</td>
                             <td className="text-center">{formatDate(product.createdAt)}</td>
                             <td className="text-center">
-                                <Button variant="warning" className="mr-2"><i className="fas fa-edit"></i></Button>
+                                <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
                                 <Button variant="danger" onClick={() => {if(window.confirm('Are you sure to delete this product ?')) {handleDelete(product.id)}}}><i className="fas fa-trash"></i></Button>
                             </td>
                         </tr>
