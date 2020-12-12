@@ -29,9 +29,22 @@ function find (id) {
                 .then(response => response.data)
 }
 
+function findLasts (itemsPerPage, currentPage) {
+    return axios.get(`http://127.0.0.1:8000/api/orders/?status=EN+COURS&pagination=true&count=${itemsPerPage}&page=${currentPage}`)
+                .then(response => response.data)
+}
+
+function setStatus (id, status) {
+    return axios.put(`http://127.0.0.1:8000/api/orders/${id}`, {
+        status: status
+    })
+}
+
 export default {
     send: send,
     findByPage: findByPage,
     findAll: findAll,
-    find: find
+    find: find,
+    findLasts: findLasts,
+    setStatus: setStatus
 }

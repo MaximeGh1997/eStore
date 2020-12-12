@@ -52,6 +52,7 @@ const CartPage = (props) => {
         e.preventDefault()
         if (checked !== true) {
            return
+           // toast
         }
         try {
             await ordersAPI.send(cart, buyer, checked)

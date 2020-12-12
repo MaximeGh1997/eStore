@@ -24,6 +24,7 @@ class OrderDetails
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"orders_read"})
      */
     private $id;
 

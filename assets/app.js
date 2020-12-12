@@ -22,6 +22,7 @@ import AdminProductsPage from './pages/admin/ProductsPage'
 import AdminProductFormPage from './pages/admin/ProductFormPage'
 import AdminOrdersPage from './pages/admin/OrdersPage'
 import AdminOrderPage from './pages/admin/OrderPage'
+import AdminLastsOrdersPage from './pages/admin/LastsOrdersPage'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
@@ -87,7 +88,7 @@ const App = () => {
                 <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
                     <HashRouter>
                         <Navbar/>
-                        <main className="container pt-5 h-100">
+                        <main className="container pt-5 pb-5">
                             <Switch>
                                 <Route path="/products" component={ProductsPage}/>
                                 <Route path="/cart" component={CartPage}/>
@@ -96,7 +97,7 @@ const App = () => {
                                 <PrivateRoute path="/admin/products" component={AdminProductsPage} />
                                 <PrivateRoute path="/admin/orders/:id" component={AdminOrderPage} />
                                 <PrivateRoute path="/admin/orders" component={AdminOrdersPage} />
-                                <PrivateRoute path="" />
+                                <PrivateRoute path="/admin/lasts-orders" component={AdminLastsOrdersPage} />
                             </Switch>
                             <Cart isOnPage = {false} />
                         </main>

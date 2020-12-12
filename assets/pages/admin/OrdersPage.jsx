@@ -13,7 +13,7 @@ const STATUS = [
     },
     {
         name:'delivered',
-        title: 'LIVRER'
+        title: 'Livré'.toUpperCase()
     }
 ]
 
@@ -86,7 +86,7 @@ const OrdersPage = (props) => {
                         <th className="text-center">Client</th>
                         <th className="text-center">Tél.</th>
                         <th>Ville</th>
-                        <th>Status</th>
+                        <th>Statut</th>
                         <th></th>
                     </tr>
                 </thead>

@@ -57,7 +57,6 @@ const Cart = (props) => {
                         <>
                             <Item
                                 item={item}
-                                key={item}
                                 updateItem={updateItem}
                                 removeItem={removeItem}
                             />
@@ -102,7 +101,6 @@ const Cart = (props) => {
                                                 <>
                                                     <Item
                                                         item={item}
-                                                        key={item.product.id}
                                                         updateItem={updateItem}
                                                         removeItem={removeItem}
                                                     />

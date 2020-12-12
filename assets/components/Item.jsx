@@ -25,7 +25,7 @@ const Item = (props) => {
 
     return (
         <>
-        <tr>
+        <tr key={props.item}>
             <td>{props.item.product.name}</td>
             <td>
                 <Button variant="primary" className="mr-2" onClick={() => decrease(props.item)}>-</Button>

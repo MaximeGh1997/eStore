@@ -26,6 +26,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *      "order"={"createdAt":"desc"}
  *      }
  * )
+ * @ApiFilter(SearchFilter::class, properties={"status": "exact"})
  */
 class Orders
 {
