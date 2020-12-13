@@ -4,6 +4,7 @@ import Pagination from '../../components/Pagination'
 import moment from 'moment'
 import Table from 'react-bootstrap/Table'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 const LastOrdersPage = (props) => {
 
@@ -19,7 +20,7 @@ const LastOrdersPage = (props) => {
             setOrders(data['hydra:member'])
             setTotalItems(data['hydra:totalItems'])
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger les commandes, veuillez rééssayer ultèrieurement...')
         }
     }
 

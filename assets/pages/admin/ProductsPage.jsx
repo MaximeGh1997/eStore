@@ -5,6 +5,7 @@ import Pagination from '../../components/Pagination'
 import productsAPI from '../../services/productsAPI'
 import moment from 'moment'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
 const ProductsPage = (props) => {
 
@@ -21,7 +22,7 @@ const ProductsPage = (props) => {
             setProducts(data['hydra:member'])
             setTotalItems(data['hydra:totalItems'])
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger les produits, veuillez rééssayer ultèrieurement...')
         }
     }
 
@@ -29,17 +30,15 @@ const ProductsPage = (props) => {
         fetchProducts()
     }, [currentPage])
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id, name) => {
         const originalProducts = [...products]
         setProducts(products.filter(product => product.id !== id))
 
         try {
             await productsAPI.delete(id)
-            console.log('Produit supprimé')
-            // toast
+            toast.warning(`Le produit ${name} à bien été supprimé !`)
         } catch (error) {
-            console.log(error)
-            // toast
+            toast.error("Une érreur est survenue... Veuillez rééssayer")
             setProducts(originalProducts)
         }
     }
@@ -76,7 +75,7 @@ const ProductsPage = (props) => {
                             <td className="text-center">{formatDate(product.createdAt)}</td>
                             <td className="text-center">
                                 <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
-                                <Button variant="danger" onClick={() => {if(window.confirm('Are you sure to delete this product ?')) {handleDelete(product.id)}}}><i className="fas fa-trash"></i></Button>
+                                <Button variant="danger" onClick={() => {if(window.confirm('Are you sure to delete this product ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
                             </td>
                         </tr>
                     ))}

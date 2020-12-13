@@ -5,6 +5,7 @@ import Pagination from '../../components/Pagination'
 import Table from 'react-bootstrap/Table'
 import {Link} from 'react-router-dom'
 import Select from '../../components/forms/Select'
+import {toast} from 'react-toastify'
 
 const STATUS = [
     {
@@ -32,7 +33,7 @@ const OrdersPage = (props) => {
             setOrders(data)
             setFilteredOrders(data)
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger les commandes, veuillez rééssayer ultèrieurement...')
         }
     }
 

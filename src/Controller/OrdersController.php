@@ -60,20 +60,20 @@ class OrdersController extends AbstractController
     
                 $data = [
                     'type' => 'order_send',
-                    'title' =>'Votre commande à bien été enregistrée'
+                    'title' =>'Merci pour votre commande ! Elle est désormais enregistrée et en cours de traitement...'
                 ];
                 return new JsonResponse($data, 200);
             } else {
                 $data = [
                     'type' => 'checked_violations',
-                    'title' =>'Veuillez accepter les conditions d\'utilisation pour valider la commande',
+                    'title' =>'Veuillez accepter les conditions d\'utilisation !',
                 ];
                 return new JsonResponse($data, 401);
             }
         } else {
             $data = [
                 'type' => 'cart_violations',
-                'title' =>'Votre panier est vide',
+                'title' =>'Votre panier est vide !',
             ];
             return new JsonResponse($data, 400);
         }

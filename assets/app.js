@@ -7,7 +7,8 @@
 
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom'
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route, withRouter } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 import ProductsPage from './pages/ProductsPage'
 import CartContext from './contexts/CartContext'
@@ -28,6 +29,7 @@ import AdminLastsOrdersPage from './pages/admin/LastsOrdersPage'
 import './styles/app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
@@ -77,6 +79,8 @@ const App = () => {
         setIsAdmin: setIsAdmin
     }
 
+    const NavbarWithRouter = withRouter(Navbar)
+
     useEffect(() => {
         if (localStorage.getItem('cart')) {
             setCart(JSON.parse(localStorage.getItem('cart')))
@@ -87,7 +91,7 @@ const App = () => {
             <AuthContext.Provider value={authContextValue}>
                 <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
                     <HashRouter>
-                        <Navbar/>
+                        <NavbarWithRouter/>
                         <main className="container pt-5 pb-5">
                             <Switch>
                                 <Route path="/products" component={ProductsPage}/>
@@ -102,6 +106,7 @@ const App = () => {
                             <Cart isOnPage = {false} />
                         </main>
                     </HashRouter>
+                    <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
                 </CartContext.Provider>
             </AuthContext.Provider>
     )

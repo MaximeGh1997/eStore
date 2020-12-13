@@ -3,6 +3,7 @@ import CartContext from '../contexts/CartContext'
 import Cart from '../components/Cart'
 import Field from '../components/forms/Field'
 import ordersAPI from '../services/ordersAPI'
+import {toast} from 'react-toastify'
 
 const CartPage = (props) => {
 
@@ -51,30 +52,20 @@ const CartPage = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (checked !== true) {
-           return
-           // toast
+            toast.error('Veuillez accepter les conditions d\'utilisation !')
+            return
         }
         try {
             await ordersAPI.send(cart, buyer, checked)
-            setBuyer({
-                lastname:'',
-                firstname:'',
-                email:'',
-                phone:'',
-                address:'',
-                zip:'',
-                city:'',
-                infos:''
-            })
-            setChecked(false)
             clearCart()
-            // toast
+            toast.success('Merci pour votre commande ! Elle est désormais enregistrée et en cours de traitement...')
+            props.history.push('/products')
         } catch ({response}) {
             if (response.data.type == 'cart_violations') {
-                // toast
+                toast.error(response.data.title)
             }
             else if (response.data.type == 'checked_violations') {
-                // toast
+                toast.error(response.data.title)
             }
             else if(response.data.type == 'buyer_violations') {
                 const {errors} = response.data
@@ -85,7 +76,7 @@ const CartPage = (props) => {
                     }
                 })
                 setErrors(formErrors)
-                // toast
+                toast.error('Des érreurs dans votre formulaire...')
             }
         }
     }

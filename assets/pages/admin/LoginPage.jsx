@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import Field from '../../components/forms/Field'
 import authAPI from '../../services/authAPI'
 import AuthContext from '../../contexts/AuthContext'
+import {toast} from 'react-toastify'
 
 const LoginPage = (props) => {
 
@@ -27,10 +28,11 @@ const LoginPage = (props) => {
             if (authAPI.isAdmin()) {
                 setIsAdmin(true)
             }
-            setError('')
-            //toast
+            toast.success('Vous êtes connecté')
+            props.history.push('/admin/products')
         } catch (error) {
-            setError('Nom d\'utilisateur ou mot de passe incorrect !')
+            setError('Verifiez vos informations de connexion')
+            toast.error('Nom d\'utilisateur ou mot de passe incorrect !')
         }
     }
 
@@ -38,6 +40,7 @@ const LoginPage = (props) => {
         authAPI.logout()
         setIsAuthenticated(false)
         setIsAdmin(false)
+        toast.info('Vous êtes déconnecté')
     }
 
     return (
@@ -68,6 +71,7 @@ const LoginPage = (props) => {
                                 value={credentials.password}
                                 onChange={handleChange}
                                 type="password"
+                                error={error}
                             />
                             <div className="form-group">
                                 <button className="btn btn-success">Connexion</button>

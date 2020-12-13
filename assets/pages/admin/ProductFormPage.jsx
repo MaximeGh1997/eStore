@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import productsAPI from '../../services/productsAPI'
 import Field from '../../components/forms/Field'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
 
-const ProductFormPage = ({match}) => {
+const ProductFormPage = ({match, history}) => {
 
     var {id = 'new'} = match.params
 
@@ -28,7 +29,7 @@ const ProductFormPage = ({match}) => {
             const {name, description, price, picture} = await productsAPI.find(id)
             setProduct({name, description, price, picture})
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger le produit demandé...')
         }
     }
 
@@ -50,10 +51,12 @@ const ProductFormPage = ({match}) => {
         try {
             if (editing) {
                 await productsAPI.update(id, product)
-                console.log('edit ok')
+                toast.success('Le produit à bien été modifié !')
+                history.push('/admin/products')
             } else {
                 await productsAPI.create(product)
-                console.log('new ok')
+                toast.success('Le produit à bien été enregistré !')
+                history.push('/admin/products')
             }
         } catch ({response}) {
             const {violations} = response.data
@@ -64,7 +67,7 @@ const ProductFormPage = ({match}) => {
                 })
                 setErrors(formErrors)
             }
-            console.log('autre error')
+            toast.error('Une érreur est survenue... Veuillez rééssayer')
         }
     }
 

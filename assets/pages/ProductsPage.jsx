@@ -3,6 +3,7 @@ import CartContext from '../contexts/CartContext'
 import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
 import Pagination from '../components/Pagination'
+import {toast} from 'react-toastify'
 
 const ProductsPage = (props) => {
 
@@ -21,7 +22,7 @@ const ProductsPage = (props) => {
             setProducts(data['hydra:member'])
             setTotalItems(data['hydra:totalItems'])
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger les produits, veuillez reéssayer ultèrieurement...')
         }
     }
 

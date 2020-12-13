@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import ordersAPI from '../../services/ordersAPI'
 import moment from 'moment'
 import Table from 'react-bootstrap/Table'
+import {toast} from 'react-toastify'
 
 const STATUS = [
     {
@@ -32,7 +33,7 @@ const OrderPage = ({match}) => {
             setBuyer(data.deliveryInfos)
             console.log('order ok')
         } catch (error) {
-            console.log(error)
+            toast.error('Impossible de charger la commande demandée...')
         }
     }
 
@@ -50,9 +51,9 @@ const OrderPage = ({match}) => {
     const handleClick = async (id, status) => {
         try {
             await ordersAPI.setStatus(id, status)
+            toast.success('Le statut à bien été mis à jour !')
         } catch (error) {
-            console.log(error)
-            // toast
+            toast.error('Impossible de mettre à jour le statut... Veuillez rééssayer ultèrieurement')
         }
     }
 

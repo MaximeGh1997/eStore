@@ -3,8 +3,9 @@ import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import AuthContext from '../contexts/AuthContext'
 import authAPI from '../services/authAPI'
+import {toast} from 'react-toastify'
 
-const Nav = () => {
+const Nav = (props) => {
 
     const {isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin} = useContext(AuthContext)
     
@@ -12,6 +13,8 @@ const Nav = () => {
         authAPI.logout()
         setIsAuthenticated(false)
         setIsAdmin(false)
+        toast.info('Vous êtes déconnecté')
+        props.history.replace('/admin/login')
     }
 
     return (
