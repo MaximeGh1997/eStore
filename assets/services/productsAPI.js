@@ -27,11 +27,17 @@ function createProduct (product) {
     return axios.post("http://127.0.0.1:8000/api/products", product)
 }
 
+function findLastsProducts () {
+    return axios.get('http://127.0.0.1:8000/api/products?order[createdAt]=desc')
+        .then (response => response.data['hydra:member'].slice(0,3))
+}
+
 export default {
     findAll: findAll,
     findByPage : findByPage,
     find: find,
     delete: deleteProduct,
     update: updateProduct,
-    create: createProduct
+    create: createProduct,
+    findLasts: findLastsProducts
 }

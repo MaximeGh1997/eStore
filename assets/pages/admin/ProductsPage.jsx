@@ -52,6 +52,7 @@ const ProductsPage = (props) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <div className="d-flex justify-content-start align-items-center">
                 <h1 className="mb-4">Administration des produits</h1>
             </div>
@@ -87,6 +88,7 @@ const ProductsPage = (props) => {
                 length={totalItems}
                 onPageChanged={handlePageChange}
             />
+        </div>
         </>
     )
 }

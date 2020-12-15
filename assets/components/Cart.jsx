@@ -78,7 +78,7 @@ const Cart = (props) => {
         :
             <>
                 <div className="shopping">
-                    <div id="cartBtn" onClick={() => handleClick()}><i className="fas fa-shopping-basket"></i><span>{cart.length}</span></div>
+                    <div id="cartBtn" onClick={() => handleClick()}><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
                 
                     <div className="cart">
                         <div className="command">

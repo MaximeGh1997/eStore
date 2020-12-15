@@ -9,7 +9,9 @@ import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route, withRouter } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
+import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
@@ -92,7 +94,6 @@ const App = () => {
                 <CartContext.Provider value={{ cart, addItem, updateItem, removeItem, clearCart }}>
                     <HashRouter>
                         <NavbarWithRouter/>
-                        <main className="container pt-5 pb-5">
                             <Switch>
                                 <Route path="/products" component={ProductsPage}/>
                                 <Route path="/cart" component={CartPage}/>
@@ -102,9 +103,9 @@ const App = () => {
                                 <PrivateRoute path="/admin/orders/:id" component={AdminOrderPage} />
                                 <PrivateRoute path="/admin/orders" component={AdminOrdersPage} />
                                 <PrivateRoute path="/admin/lasts-orders" component={AdminLastsOrdersPage} />
+                                <Route path="/" component={HomePage}/>
                             </Switch>
                             <Cart isOnPage = {false} />
-                        </main>
                     </HashRouter>
                     <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
                 </CartContext.Provider>

@@ -59,6 +59,7 @@ const OrderPage = ({match}) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <h1 className="mb-4">Commande n°{order.id}</h1>
             <div className="row justify-content-center">
                 <div className="status row col-auto justify-content-between mb-4">
@@ -133,6 +134,7 @@ const OrderPage = ({match}) => {
                         <p>Pas de commentaire</p>
                     }
                 </div>
+        </div>
         </>
     )
 }

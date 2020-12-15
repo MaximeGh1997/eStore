@@ -64,6 +64,7 @@ const OrdersPage = (props) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <div className="d-flex justify-content-start align-items-center">
                 <h1 className="mb-4">Administration des commandes</h1>
             </div>
@@ -118,6 +119,7 @@ const OrdersPage = (props) => {
                 length={filteredOrders.length}
                 onPageChanged={handlePageChange}
             />
+        </div>
         </>
     )
 }

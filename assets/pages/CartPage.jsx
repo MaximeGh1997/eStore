@@ -83,111 +83,113 @@ const CartPage = (props) => {
 
     return (
         <>
-            <div className="d-flex justify-content-start align-items-center">
-                <h1 className="mb-3">My cart</h1>
-            </div>
-            <Cart isOnPage = {true} />
-
-            {isEmpty() ?
-                <></>
-            :
-            <>
+                <div className="container pt-5 pb-5">
                 <div className="d-flex justify-content-start align-items-center">
-                    <h1 className="mt-5 mb-3">Send my order</h1>
+                    <h1 className="mb-3">My cart</h1>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <Field
-                        type="text"
-                        name="lastname"
-                        label="Nom *"
-                        placeholder="Votre nom"
-                        error={errors.lastname}
-                        value={buyer.lastname}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="text"
-                        name="firstname"
-                        label="Prénom *"
-                        placeholder="Votre prénom"
-                        error={errors.firstname}
-                        value={buyer.firstname}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="email"
-                        name="email"
-                        label="E-mail *"
-                        placeholder="Votre e-mail"
-                        error={errors.email}
-                        value={buyer.email}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="text"
-                        name="phone"
-                        label="Téléphone *"
-                        placeholder="Votre numéro de télephone"
-                        error={errors.phone}
-                        value={buyer.phone}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="text"
-                        name="address"
-                        label="Adresse *"
-                        placeholder="Votre adresse"
-                        error={errors.adress}
-                        value={buyer.address}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="text"
-                        name="zip"
-                        label="Code postal *"
-                        placeholder="Votre code postal"
-                        error={errors.zip}
-                        value={buyer.zip}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <Field
-                        type="text"
-                        name="city"
-                        label="Ville *"
-                        placeholder="Votre ville"
-                        error={errors.city}
-                        value={buyer.city}
-                        onChange={handleChange}
-                        required='required'
-                    />
-                    <div className="form-group">
-                        <label htmlFor="infos">Informations supplémentaire</label>
-                        <textarea
-                            name="infos"
-                            id="infos"
-                            placeholder="Votre commentaire"
-                            value={buyer.infos}
+                <Cart isOnPage = {true} />
+
+                {isEmpty() ?
+                    <></>
+                :
+                <>
+                    <div className="d-flex justify-content-start align-items-center">
+                        <h1 className="mt-5 mb-3">Send my order</h1>
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <Field
+                            type="text"
+                            name="lastname"
+                            label="Nom *"
+                            placeholder="Votre nom"
+                            error={errors.lastname}
+                            value={buyer.lastname}
                             onChange={handleChange}
-                            className="form-control"
-                        >
-                        </textarea>
-                    </div>
-                    <div className="form-check mb-3">
-                        <input type="checkbox" className="form-check-input" id="accept" checked={checked} onChange={() => handleCheckedChange()} />
-                        <label className="form-check-label" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-success mb-5">Send</button>
-                    </div>
-                </form>
-            </>
-            }
+                            required='required'
+                        />
+                        <Field
+                            type="text"
+                            name="firstname"
+                            label="Prénom *"
+                            placeholder="Votre prénom"
+                            error={errors.firstname}
+                            value={buyer.firstname}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <Field
+                            type="email"
+                            name="email"
+                            label="E-mail *"
+                            placeholder="Votre e-mail"
+                            error={errors.email}
+                            value={buyer.email}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <Field
+                            type="text"
+                            name="phone"
+                            label="Téléphone *"
+                            placeholder="Votre numéro de télephone"
+                            error={errors.phone}
+                            value={buyer.phone}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <Field
+                            type="text"
+                            name="address"
+                            label="Adresse *"
+                            placeholder="Votre adresse"
+                            error={errors.adress}
+                            value={buyer.address}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <Field
+                            type="text"
+                            name="zip"
+                            label="Code postal *"
+                            placeholder="Votre code postal"
+                            error={errors.zip}
+                            value={buyer.zip}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <Field
+                            type="text"
+                            name="city"
+                            label="Ville *"
+                            placeholder="Votre ville"
+                            error={errors.city}
+                            value={buyer.city}
+                            onChange={handleChange}
+                            required='required'
+                        />
+                        <div className="form-group">
+                            <label htmlFor="infos">Informations supplémentaire</label>
+                            <textarea
+                                name="infos"
+                                id="infos"
+                                placeholder="Votre commentaire"
+                                value={buyer.infos}
+                                onChange={handleChange}
+                                className="form-control"
+                            >
+                            </textarea>
+                        </div>
+                        <div className="form-check mb-3">
+                            <input type="checkbox" className="form-check-input" id="accept" checked={checked} onChange={() => handleCheckedChange()} />
+                            <label className="form-check-label" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-success mb-5">Send</button>
+                        </div>
+                    </form>
+                </>
+                }
+            </div>
         </>
     )
 }

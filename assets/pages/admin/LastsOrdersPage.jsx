@@ -45,6 +45,7 @@ const LastOrdersPage = (props) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <div className="d-flex justify-content-start align-items-center">
                 <h1 className="mb-4">Dernières commandes</h1>
             </div>
@@ -95,6 +96,7 @@ const LastOrdersPage = (props) => {
             :
                 <h3 className="text-center">Pas de nouvelles commandes</h3>
             }
+        </div>
         </>
     )
 }

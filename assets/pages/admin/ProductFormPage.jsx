@@ -73,6 +73,7 @@ const ProductFormPage = ({match, history}) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <div className="d-flex justify-content-start align-items-center">
                 {editing ? <h1 className="mb-4">Modification du produit: {product.name}</h1> : <h1 className="mb-4">Ajout d'un produit</h1>}
             </div>
@@ -128,6 +129,7 @@ const ProductFormPage = ({match, history}) => {
                         <Link to="/admin/products" className="btn btn-secondary">Retour aux produits</Link>
                     </div>
                 </form>
+        </div> 
         </>
     )
 }

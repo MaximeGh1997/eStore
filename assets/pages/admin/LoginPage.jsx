@@ -45,6 +45,7 @@ const LoginPage = (props) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             {isAuthenticated ?
                 <div className="row">
                     <div className="col-6 offset-3 mt-5">
@@ -80,6 +81,7 @@ const LoginPage = (props) => {
                     </div>
                 </div>
             }
+        </div>
         </>
     )
 }

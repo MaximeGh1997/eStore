@@ -37,8 +37,9 @@ const ProductsPage = (props) => {
 
     return (
         <>
+        <div className="container pt-5 pb-5">
             <div className="d-flex justify-content-start align-items-center">
-                <h1 className="mb-3">Our products</h1>
+                <h1 className="title mb-4">Nos cocktails</h1>
             </div>
             <div className="row">
                {products.map(product => (
@@ -54,7 +55,8 @@ const ProductsPage = (props) => {
                 itemsPerPage={itemsPerPage}
                 length={totalItems}
                 onPageChanged={handlePageChange}
-            />            
+            />     
+        </div>    
         </>
     )
 }
