@@ -37,9 +37,9 @@ const ProductsPage = (props) => {
 
     return (
         <>
-        <div className="container pt-5 pb-5">
+        <div className="container slide pb-5">
             <div className="d-flex justify-content-start align-items-center">
-                <h1 className="title mb-4">Nos cocktails</h1>
+                <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>
             </div>
             <div className="row">
                {products.map(product => (

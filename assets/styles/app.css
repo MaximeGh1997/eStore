@@ -7,13 +7,53 @@ html, body {
 }
 
 body {
-    background-color: rgb(0, 0, 0);
+    background-color: black;
     color: white;
 }
 
 #app {
     width: 100%;
     height: 100%;
+}
+
+.slide {
+    min-height: 100vh;
+}
+
+.box-content {
+    position: relative;
+    background-color: black;
+}
+
+.text-poppins {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.text-poppins-light {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+.text-poppins-bold {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/** Footer **/
+
+footer {
+    font-family: 'Poppins', sans-serif;
+}
+
+footer a {
+    transition-property: color;
+    transition: color .3s
+}
+
+footer a:hover {
+    text-decoration: none;
+    color:rgb(255, 245, 107) !important
 }
 
 /** Bootstrap **/
@@ -29,17 +69,52 @@ body {
     color: black;
 }
 
+.bg-primary {
+    background-color: rgb(255, 253, 232) !important;
+}
+
+.bg-dark {
+    background-color: black !important;
+}
+
+.container {
+    padding-top: 100px;
+}
+
+/* Pagination */
+
+.pagination .page-item .page-link {
+    background-color: rgba(0,0,0);
+    border-color: rgb(255, 245, 107);
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link{
+    background-color: rgba(0,0,0) !important;
+    border-color: grey !important;
+    color: grey !important;
+}
+
+.pagination .page-item.active .page-link{
+    background-color: rgb(255, 245, 107);
+    color: black;
+    border-color: rgb(255, 245, 107);
+}
+
+.pagination .page-item:hover .page-link{
+    background-color: rgb(255, 245, 107);
+    color: black;
+    border-color: rgb(255, 245, 107);
+}
+
+/* Home page */
+
 .jumbotron {
     background-image: url('../uploads/handsome-bartender-making-drinking-cocktails-counter.jpg');
     background-position: center bottom;
     background-size: cover;
     padding-top: 15%;
     padding-bottom: 15%;
-    background-attachment: fixed;
-}
-
-.slide {
-    min-height: 100vh;
 }
 
 .picture {
@@ -50,17 +125,6 @@ body {
 }
 
 /* Products page */
-
-.text-poppins-light {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-}
-
-.title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: white;
-}
 
 .product-card {
     height: 100%;
@@ -99,10 +163,10 @@ body {
     font-weight: 200;
 }
 
+/* Cart */
+
 .empty-cart {
-    width: 100%;
-    height: 30%;
-    text-align: center;
+    margin-top: 20vh;
 }
 
 .shopping {

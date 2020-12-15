@@ -37,8 +37,11 @@ const Cart = (props) => {
             {isEmpty() ?
                 <>
                 <div className="empty-cart">
-                    <h3 className="align-self-center">Votre panier est vide</h3>
-                </div>
+                    <h3 className="text-poppins text-center mb-3">Votre panier est vide</h3>
+                    <div className="row justify-content-center">
+                        <Link to='/products' className='btn btn-outline-primary'>Voir les cocktails</Link>
+                    </div>
+                </div>   
                 </>
             :
             <>

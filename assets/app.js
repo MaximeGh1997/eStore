@@ -16,6 +16,7 @@ import ProductsPage from './pages/ProductsPage'
 import CartContext from './contexts/CartContext'
 import CartPage from './pages/CartPage'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Cart from './components/Cart'
 import AdminLoginPage from './pages/admin/LoginPage'
 import authAPI from './services/authAPI'
@@ -105,7 +106,8 @@ const App = () => {
                                 <PrivateRoute path="/admin/lasts-orders" component={AdminLastsOrdersPage} />
                                 <Route path="/" component={HomePage}/>
                             </Switch>
-                            <Cart isOnPage = {false} />
+                        <Footer/>
+                        <Cart isOnPage = {false} />
                     </HashRouter>
                     <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
                 </CartContext.Provider>

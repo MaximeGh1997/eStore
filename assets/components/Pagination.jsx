@@ -11,19 +11,19 @@ const Pagination = (props) => {
 
     return (
         <div>
-            <ul className="pagination pagination-sm">
-                <li className={"page-item" + (props.currentPage === 1 ? "disabled" : null)}>
-                    <button className="page-link" onClick={() => props.onPageChanged(props.currentPage - 1)}>Previous</button>
+            <ul className="pagination justify-content-center">
+                <li className={"page-item" + (props.currentPage === 1 ? " disabled" : "")}>
+                    <button className="page-link" onClick={() => props.onPageChanged(props.currentPage - 1)}>Précédent</button>
                 </li>
 
                 {pages.map(page => (
-                    <li key={page} className={"page-item" + props.currentPage === page ? "active" : null}>
+                    <li key={page} className={"page-item" + (props.currentPage === page ? " active" : "")}>
                         <button className="page-link" onClick={() => props.onPageChanged(page)}>{page}</button>
                     </li>
                 ))}
 
-                <li className={"page-item" + (props.currentPage === pagesCount ? "disabled" : null)}>
-                    <button className="page-link" onClick={() => props.onPageChanged(props.currentPage + 1)}>Next</button>
+                <li className={"page-item" + (props.currentPage === pagesCount ? " disabled" : "")}>
+                    <button className="page-link" onClick={() => props.onPageChanged(props.currentPage + 1)}>Suivant</button>
                 </li>
             </ul>
         </div>

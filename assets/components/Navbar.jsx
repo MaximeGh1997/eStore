@@ -23,24 +23,24 @@ const Nav = (props) => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/">Home</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/">Accueil</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/products">Products</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/products">Cocktails</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/cart">My cart</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/cart">Mon panier</NavLink>
                     </li>
                     {isAdmin ?
                         <>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/admin/products">My products</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/products">Carte</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/admin/orders">All orders</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/lasts-orders">Nouvelles commandes</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/admin/lasts-orders">Lasts orders</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/orders">Commandes</NavLink>
                             </li>
                         </>
                     :

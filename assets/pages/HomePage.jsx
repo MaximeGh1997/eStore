@@ -4,6 +4,7 @@ import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
 import {toast} from 'react-toastify'
 import {Link} from 'react-router-dom'
+import Rellax from 'rellax'
 
 const HomePage = (props) => {
 
@@ -22,6 +23,14 @@ const HomePage = (props) => {
 
     useEffect(() => {
         fetchNewProducts()
+        new Rellax('.jumbotron', {
+            speed: -7,
+            center: false,
+            wrapper: null,
+            round: true,
+            vertical: true,
+            horizontal: false  
+        })
     }, [])
 
     return (
@@ -33,30 +42,32 @@ const HomePage = (props) => {
                 </div>
             </div>
 
-            <div className="container">
-                <div className="row slide">
-                    <div className="col-5 align-self-center picture">
-                        
+            <div className="box-content">
+                <div className="container pb-5">
+                    <div className="row slide">
+                        <div className="col-5 align-self-center picture">
+                            
+                        </div>
+                        <div className="col-6 offset-1 align-self-center text-poppins-light font-italic">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>
+                        </div>
                     </div>
-                    <div className="col-6 offset-1 align-self-center text-poppins-light font-italic">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>
-                    </div>
-                </div>
 
-                <h1 className="text-center mb-5 title">Nouveautées</h1>
-                <div className="row">
-                     {newProducts.map(product => (
-                        <Product
-                            key={product.id}
-                            product={product}
-                            addItem={addItem}
-                        />
-                     ))}
-                </div>
-                <div className="row justify-content-center">
-                    <Link to='/products' className='btn btn-outline-primary'>Voir plus</Link>
-                </div>
+                    <h1 className="text-center mb-5 title">Nouveautées</h1>
+                    <div className="row">
+                        {newProducts.map(product => (
+                            <Product
+                                key={product.id}
+                                product={product}
+                                addItem={addItem}
+                            />
+                        ))}
+                    </div>
+                    <div className="row justify-content-center">
+                        <Link to='/products' className='btn btn-outline-primary'>Voir plus</Link>
+                    </div>
+                </div> 
             </div>
         </>
     )

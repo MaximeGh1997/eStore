@@ -83,9 +83,9 @@ const CartPage = (props) => {
 
     return (
         <>
-                <div className="container pt-5 pb-5">
+            <div className="container slide pb-5">
                 <div className="d-flex justify-content-start align-items-center">
-                    <h1 className="mb-3">My cart</h1>
+                    <h1 className="mb-3 text-poppins-bold">Mon panier</h1>
                 </div>
                 <Cart isOnPage = {true} />
 
