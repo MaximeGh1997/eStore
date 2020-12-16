@@ -59,24 +59,25 @@ const OrderPage = ({match}) => {
 
     return (
         <>
-        <div className="container pt-5 pb-5">
-            <h1 className="mb-4">Commande n°{order.id}</h1>
+        <div className="slide bg-primary text-dark">
+           <div className="container pb-5">
+            <h1 className="text-poppins-bold mb-4">Commande n°{order.id}</h1>
             <div className="row justify-content-center">
                 <div className="status row col-auto justify-content-between mb-4">
                     <div className="row form-group mr-3">
-                        <span className="col-4">Statut:</span>
-                        <select name="status" id="status" className="col-8 form-control" value={status} onChange={handleChange}>
+                        <span className="text-poppins col-4">Statut:</span>
+                        <select name="status" id="status" className="col-8 form-control text-poppins" value={status} onChange={handleChange}>
                             <>
                             {STATUS.map(s =>  <option key={s.name} value={s.title}>{s.title}</option> )}
                             </> 
                         </select>
                     </div>
-                    <button className="btn btn-success ml-3" onClick={() => handleClick(order.id, status)}>Mettre à jour</button>
+                    <button className="btn btn-success text-poppins ml-3" onClick={() => handleClick(order.id, status)}>Mettre à jour</button>
                 </div>
             </div>
             
-            <h3 className="mt-2 mb-4">Détail de la commande</h3>
-            <Table className="mb-5">
+            <h3 className="mt-2 mb-4 text-poppins-bold">Détail de la commande</h3>
+            <Table className="text-poppins mb-5">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -97,17 +98,14 @@ const OrderPage = ({match}) => {
                         </tr>
                     ))}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Total commande: {order.total}€</td>
+                        <td colSpan="4">Total commande</td>
+                        <td>{order.total}€</td>
                     </tr>
                 </tbody>
             </Table>
             
-            <h3 className="mt-2 mb-5">Informations sur la commande</h3>
-                <div className="col-6 offset-3 mt-2">
+            <h3 className="mt-2 mb-5 text-poppins-bold">Informations sur la commande</h3>
+                <div className="col-6 offset-3 mt-2 text-poppins">
                     <dl className="row">
                         <dt className="col-sm-3 mb-2"><h5>Date</h5></dt>
                         <dd className="col-sm-9 text-right mb-2"><h6>{formatDate(order.createdAt)}</h6></dd>
@@ -134,7 +132,9 @@ const OrderPage = ({match}) => {
                         <p>Pas de commentaire</p>
                     }
                 </div>
+        </div> 
         </div>
+        
         </>
     )
 }

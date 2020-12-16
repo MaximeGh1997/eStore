@@ -52,43 +52,46 @@ const ProductsPage = (props) => {
 
     return (
         <>
-        <div className="container pt-5 pb-5">
-            <div className="d-flex justify-content-start align-items-center">
-                <h1 className="mb-4">Administration des produits</h1>
-            </div>
-            <Link to="/admin/products/new" className="btn btn-success mb-2">Ajouter un produit</Link>
-            <Table striped hover>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nom</th>
-                        <th className="text-center">Prix</th>
-                        <th className="text-center">Date d'ajout</th>
-                        <th className="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map(product => (
-                        <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td className="text-center">{product.price}€</td>
-                            <td className="text-center">{formatDate(product.createdAt)}</td>
-                            <td className="text-center">
-                                <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
-                                <Button variant="danger" onClick={() => {if(window.confirm('Are you sure to delete this product ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
-                            </td>
+        <div className="slide bg-primary">
+            <div className="container pb-5">
+                <div className="d-flex justify-content-start align-items-center">
+                    <h1 className="text-poppins-bold text-dark mb-4">Administration des produits</h1>
+                </div>
+                <Link to="/admin/products/new" className="btn btn-success text-poppins mb-3">Ajouter un produit</Link>
+                <Table borderless striped className="text-poppins mb-3">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th className="text-center">Prix</th>
+                            <th className="text-center">Date d'ajout</th>
+                            <th className="text-center">Actions</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <Pagination
-                currentPage={currentPage}
-                itemsPerPage={itemsPerPage}
-                length={totalItems}
-                onPageChanged={handlePageChange}
-            />
+                    </thead>
+                    <tbody>
+                        {products.map(product => (
+                            <tr key={product.id}>
+                                <td>{product.id}</td>
+                                <td>{product.name}</td>
+                                <td className="text-center">{product.price}€</td>
+                                <td className="text-center">{formatDate(product.createdAt)}</td>
+                                <td className="text-center">
+                                    <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
+                                    <Button variant="danger" onClick={() => {if(window.confirm('Supprimer ce produit ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+                <Pagination
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    length={totalItems}
+                    onPageChanged={handlePageChange}
+                />
+            </div>  
         </div>
+        
         </>
     )
 }

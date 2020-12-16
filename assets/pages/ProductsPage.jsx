@@ -4,6 +4,8 @@ import productsAPI from '../services/productsAPI'
 import Product from '../components/Product'
 import Pagination from '../components/Pagination'
 import {toast} from 'react-toastify'
+import Rellax from 'rellax'
+import Cover from '../uploads/young-happy-couple-drinking-tasty-sweet-cocktails-at-tropical-bar-smiling-and-having-fun-bright-clothes-and-positive-emotions.jpg'
 
 const ProductsPage = (props) => {
 
@@ -30,6 +32,17 @@ const ProductsPage = (props) => {
         fetchProducts()
     }, [currentPage])
 
+    useEffect(() => {
+        new Rellax('.header', {
+            speed: -8,
+            center: false,
+            wrapper: null,
+            round: true,
+            vertical: true,
+            horizontal: false  
+        })
+    }, [])
+
     const handlePageChange = (page) => {
         setProducts([])
         setCurrentPage(page)
@@ -37,26 +50,31 @@ const ProductsPage = (props) => {
 
     return (
         <>
-        <div className="container slide pb-5">
-            <div className="d-flex justify-content-start align-items-center">
-                <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>
-            </div>
-            <div className="row">
-               {products.map(product => (
-                    <Product
-                        key={product.id}
-                        product={product}
-                        addItem={addItem}
-                    />
-                ))} 
-            </div>
-            <Pagination
-                currentPage={currentPage}
-                itemsPerPage={itemsPerPage}
-                length={totalItems}
-                onPageChanged={handlePageChange}
-            />     
-        </div>    
+        <div className="header">
+            <img src={Cover} alt=""/>
+        </div>
+        <div className="box-content bg-dark">
+           <div className="container slide pb-5">
+                <div className="d-flex justify-content-start align-items-center">
+                    <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>
+                </div>
+                <div className="row">
+                {products.map(product => (
+                        <Product
+                            key={product.id}
+                            product={product}
+                            addItem={addItem}
+                        />
+                    ))} 
+                </div>
+                <Pagination
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    length={totalItems}
+                    onPageChanged={handlePageChange}
+                />     
+            </div> 
+        </div>
         </>
     )
 }

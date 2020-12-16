@@ -29,7 +29,7 @@ const LoginPage = (props) => {
                 setIsAdmin(true)
             }
             toast.success('Vous êtes connecté')
-            props.history.push('/admin/products')
+            props.history.push('/admin/lasts-orders')
         } catch (error) {
             setError('Verifiez vos informations de connexion')
             toast.error('Nom d\'utilisateur ou mot de passe incorrect !')
@@ -45,18 +45,21 @@ const LoginPage = (props) => {
 
     return (
         <>
-        <div className="container pt-5 pb-5">
+        <div className="slide bg-primary">
+           <div className="container pb-5">
             {isAuthenticated ?
                 <div className="row">
                     <div className="col-6 offset-3 mt-5">
-                    <h3 className="mb-3">Vous êtes déjà connecté</h3>
-                    <button className="btn btn-danger" onClick={() => handleLogout()}>Déconnexion</button>
-                </div>
+                        <h3 className="text-poppins-bold text-dark text-center mb-3">Vous êtes déjà connecté</h3>
+                        <div className="row justify-content-center">
+                           <button className="btn btn-danger text-poppins" onClick={() => handleLogout()}>Déconnexion</button> 
+                        </div>
+                    </div>
                 </div>
             :
                 <div className="row">
                     <div className="col-6 offset-3 mt-5">
-                        <h3 className="mb-3">Connexion à l'administration</h3>
+                        <h3 className="text-poppins-bold text-center text-dark mb-3">Connexion à l'administration</h3>
                         <form onSubmit={handleSubmit}>
                             <Field 
                                 label="Nom d'utilisateur"
@@ -74,14 +77,16 @@ const LoginPage = (props) => {
                                 type="password"
                                 error={error}
                             />
-                            <div className="form-group">
-                                <button className="btn btn-success">Connexion</button>
+                            <div className="row justify-content-center form-group">
+                                <button className="btn btn-success text-poppins mt-3">Connexion</button>
                             </div>
                         </form>
                     </div>
                 </div>
             }
+        </div> 
         </div>
+        
         </>
     )
 }

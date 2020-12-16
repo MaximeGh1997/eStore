@@ -11,7 +11,7 @@ const Pagination = (props) => {
 
     return (
         <div>
-            <ul className="pagination justify-content-center">
+            <ul className="pagination justify-content-center mt-3">
                 <li className={"page-item" + (props.currentPage === 1 ? " disabled" : "")}>
                     <button className="page-link" onClick={() => props.onPageChanged(props.currentPage - 1)}>Précédent</button>
                 </li>

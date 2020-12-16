@@ -109,7 +109,7 @@ const App = () => {
                         <Footer/>
                         <Cart isOnPage = {false} />
                     </HashRouter>
-                    <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
+                    <ToastContainer position={toast.POSITION.BOTTOM_LEFT} bodyClassName="text-poppins-light" />
                 </CartContext.Provider>
             </AuthContext.Provider>
     )

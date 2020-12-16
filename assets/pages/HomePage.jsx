@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import {toast} from 'react-toastify'
 import {Link} from 'react-router-dom'
 import Rellax from 'rellax'
+import Img from '../uploads/bartender-preparing-cocktail-at-counter.jpg'
 
 const HomePage = (props) => {
 
@@ -24,7 +25,7 @@ const HomePage = (props) => {
     useEffect(() => {
         fetchNewProducts()
         new Rellax('.jumbotron', {
-            speed: -7,
+            speed: -8,
             center: false,
             wrapper: null,
             round: true,
@@ -37,20 +38,21 @@ const HomePage = (props) => {
         <>
             <div className="h-60 jumbotron jumbotron-fluid">
                 <div className="container">
-                    <h1 className="display-4">Fluid jumbotron</h1>
-                    <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <h1 className="text-poppins-bold display-4">Fluid jumbotron</h1>
+                    <p className="text-poppins-light lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
                 </div>
             </div>
 
-            <div className="box-content">
+            <div className="box-content bg-dark">
                 <div className="container pb-5">
                     <div className="row slide">
-                        <div className="col-5 align-self-center picture">
-                            
+                        <div className="col-md-7 col-lg-5 align-self-center picture">
+                            <img src={Img} alt=""/>
                         </div>
-                        <div className="col-6 offset-1 align-self-center text-poppins-light font-italic">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>
+                        <div className="col-md-4 col-lg-6 offset-1 align-self-center">
+                            <h1 className="text-poppins-bold mb-3">Qui sommes nous ?</h1>
+                            <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
+                            <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>
                         </div>
                     </div>
 

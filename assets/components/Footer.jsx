@@ -37,7 +37,7 @@ const Footer = (props) => {
                 </div>
             </div>
         
-            <div className="footer-copyright text-center py-3 bg-dark text-white">© 2020 - created by
+            <div className="footer-copyright text-center py-3 bg-dark text-white font-weight-light">© 2020 - created by
                 <a href="http://www.maxime-gh.com" target="blank" className="text-white"> Maxime Gh</a>
             </div>
         </footer>

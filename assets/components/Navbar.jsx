@@ -34,13 +34,13 @@ const Nav = (props) => {
                     {isAdmin ?
                         <>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-poppins" to="/admin/products">Carte</NavLink>
-                            </li>
-                            <li className="nav-item">
                                 <NavLink className="nav-link text-poppins" to="/admin/lasts-orders">Nouvelles commandes</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link text-poppins" to="/admin/orders">Commandes</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link text-poppins" to="/admin/products">Produits</NavLink>
                             </li>
                         </>
                     :
@@ -49,7 +49,7 @@ const Nav = (props) => {
                     }
                 </ul>
                 {isAuthenticated ?
-                    <button className="btn btn-danger" onClick={() => handleLogout()}>Déconnexion</button>
+                    <button className="btn btn-danger text-poppins" onClick={() => handleLogout()}>Déconnexion</button>
                 :
                     <></>
                 }

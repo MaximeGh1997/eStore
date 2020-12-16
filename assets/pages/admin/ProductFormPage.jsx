@@ -73,10 +73,11 @@ const ProductFormPage = ({match, history}) => {
 
     return (
         <>
-        <div className="container pt-5 pb-5">
-            <div className="d-flex justify-content-start align-items-center">
-                {editing ? <h1 className="mb-4">Modification du produit: {product.name}</h1> : <h1 className="mb-4">Ajout d'un produit</h1>}
-            </div>
+        <div className="slide bg-primary text-dark">
+            <div className="container pb-5">
+                <div className="d-flex justify-content-start align-items-center">
+                    {editing ? <h1 className="text-poppins-bold mb-4">Modification du produit: {product.name}</h1> : <h1 className="text-poppins-bold mb-4">Ajout d'un produit</h1>}
+                </div>
                 <form onSubmit={handleSubmit}>
                     <Field
                         type="text"
@@ -125,11 +126,12 @@ const ProductFormPage = ({match, history}) => {
                         }
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-success mr-2">Enregistrer</button>
-                        <Link to="/admin/products" className="btn btn-secondary">Retour aux produits</Link>
+                        <button type="submit" className="btn btn-success text-poppins mr-2">Enregistrer</button>
+                        <Link to="/admin/products" className="btn btn-secondary text-poppins">Retour aux produits</Link>
                     </div>
                 </form>
-        </div> 
+            </div>   
+        </div>
         </>
     )
 }
