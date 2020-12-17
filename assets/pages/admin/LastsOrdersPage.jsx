@@ -12,7 +12,7 @@ const LastOrdersPage = (props) => {
 
     const [currentPage, setCurrentPage] = useState(1)
     const [totalItems, setTotalItems] = useState(0)
-    const itemsPerPage = 8
+    const itemsPerPage = 10
 
     const fetchOrders = async () => {
         try {
@@ -29,6 +29,7 @@ const LastOrdersPage = (props) => {
     }, [currentPage])
 
     const handlePageChange = (page) => {
+        window.scrollTo({top: 0, behavior: 'smooth' })
         setOrders([])
         setCurrentPage(page)
     }
@@ -48,7 +49,7 @@ const LastOrdersPage = (props) => {
         <div className="slide bg-primary">
             <div className="container pb-5">
                 <div className="d-flex justify-content-start align-items-center">
-                    <h1 className="text-poppins-bold text-dark mb-4">Dernières commandes</h1>
+                    <h1 className="text-poppins-bold text-dark mb-4">Nouvelles commandes</h1>
                 </div>
                 
                 {hasOrders() ?

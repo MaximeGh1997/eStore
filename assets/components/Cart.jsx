@@ -121,7 +121,7 @@ const Cart = (props) => {
                                             <tr>
                                                 <td colSpan="3">Total panier</td>
                                                 <td className="text-center">{getTotal()} €</td>
-                                                <td className="text-center"><Button variant="outline-primary" size="sm" onClick={() => {if(window.confirm('Vider votre panier ?')){clearCart()}}}>Vider mon panier</Button></td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </Table>

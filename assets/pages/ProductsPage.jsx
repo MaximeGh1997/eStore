@@ -14,7 +14,7 @@ const ProductsPage = (props) => {
     //pour pagination
     const [currentPage, setCurrentPage] = useState(1)
     const [totalItems, setTotalItems] = useState(0)
-    const itemsPerPage = 5
+    const itemsPerPage = 12
 
     const {addItem} = useContext(CartContext)
 
@@ -44,6 +44,8 @@ const ProductsPage = (props) => {
     }, [])
 
     const handlePageChange = (page) => {
+        const pageTop = document.getElementById('cocktails').offsetTop
+        window.scrollTo({top: pageTop, behavior: 'smooth'})
         setProducts([])
         setCurrentPage(page)
     }
@@ -53,7 +55,7 @@ const ProductsPage = (props) => {
         <div className="header">
             <img src={Cover} alt=""/>
         </div>
-        <div className="box-content bg-dark">
+        <div className="box-content bg-dark" id="cocktails">
            <div className="container slide pb-5">
                 <div className="d-flex justify-content-start align-items-center">
                     <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>

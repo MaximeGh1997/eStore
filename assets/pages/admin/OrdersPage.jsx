@@ -48,6 +48,7 @@ const OrdersPage = (props) => {
     const formatDate = (str) => moment(str).format('DD/MM/YYYY à HH:mm')
 
     const handleChange = (e) => {
+        window.scrollTo({top: 0, behavior: 'smooth' })
         const {value} = e.currentTarget
         setSelectedStatus(value)
         setCurrentPage(1)

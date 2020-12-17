@@ -44,6 +44,7 @@ const ProductsPage = (props) => {
     }
 
     const handlePageChange = (page) => {
+        window.scrollTo({top: 0, behavior: 'smooth' })
         setProducts([])
         setCurrentPage(page)
     }
