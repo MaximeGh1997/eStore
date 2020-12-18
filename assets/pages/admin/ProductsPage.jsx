@@ -6,6 +6,7 @@ import productsAPI from '../../services/productsAPI'
 import moment from 'moment'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
+import TableLoader from '../../components/loaders/TableLoader'
 
 const ProductsPage = (props) => {
 
@@ -16,11 +17,14 @@ const ProductsPage = (props) => {
     const [totalItems, setTotalItems] = useState(0)
     const itemsPerPage = 15
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const fetchProducts = async () => {
         try {
             const data = await productsAPI.findByPage(itemsPerPage, currentPage)
             setProducts(data['hydra:member'])
             setTotalItems(data['hydra:totalItems'])
+            setIsLoading(false)
         } catch (error) {
             toast.error('Impossible de charger les produits, veuillez rééssayer ultèrieurement...')
         }
@@ -59,40 +63,45 @@ const ProductsPage = (props) => {
                     <h1 className="text-poppins-bold text-dark mb-4">Administration des produits</h1>
                 </div>
                 <Link to="/admin/products/new" className="btn btn-success text-poppins mb-3">Ajouter un produit</Link>
-                <Table borderless striped className="text-poppins mb-3">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nom</th>
-                            <th className="text-center">Prix</th>
-                            <th className="text-center">Date d'ajout</th>
-                            <th className="text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map(product => (
-                            <tr key={product.id}>
-                                <td>{product.id}</td>
-                                <td>{product.name}</td>
-                                <td className="text-center">{product.price}€</td>
-                                <td className="text-center">{formatDate(product.createdAt)}</td>
-                                <td className="text-center">
-                                    <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
-                                    <Button variant="danger" onClick={() => {if(window.confirm('Supprimer ce produit ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
-                <Pagination
-                    currentPage={currentPage}
-                    itemsPerPage={itemsPerPage}
-                    length={totalItems}
-                    onPageChanged={handlePageChange}
-                />
+                {(!isLoading) ? (
+                    <>
+                        <Table borderless striped className="text-poppins mb-3">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th className="text-center">Prix</th>
+                                    <th className="text-center">Date d'ajout</th>
+                                    <th className="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map(product => (
+                                    <tr key={product.id}>
+                                        <td>{product.id}</td>
+                                        <td>{product.name}</td>
+                                        <td className="text-center">{product.price}€</td>
+                                        <td className="text-center">{formatDate(product.createdAt)}</td>
+                                        <td className="text-center">
+                                            <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
+                                            <Button variant="danger" onClick={() => {if(window.confirm('Supprimer ce produit ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                        <Pagination
+                            currentPage={currentPage}
+                            itemsPerPage={itemsPerPage}
+                            length={totalItems}
+                            onPageChanged={handlePageChange}
+                        />
+                    </>
+                ) : (
+                    <TableLoader/>
+                )}
             </div>  
         </div>
-        
         </>
     )
 }

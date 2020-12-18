@@ -17,14 +17,6 @@ const Cart = (props) => {
         return cartTotal
     }
 
-    const isEmpty = () => {
-        if (cart.length > 0) {
-            return false
-        } else {
-            return true
-        }
-    }
-
     const handleClick = () => {
         const shopping = document.querySelectorAll('.shopping')[0]
         shopping.classList.toggle('open')
@@ -44,7 +36,7 @@ const Cart = (props) => {
         <>
         {props.isOnPage ?
             <>
-            {isEmpty() ?
+            {(!cart.length > 0) ?
                 <>
                 <div className="empty-cart">
                     <h3 className="text-poppins text-center mb-3">Votre panier est vide</h3>
@@ -94,7 +86,7 @@ const Cart = (props) => {
 
                        <div className="cart">
                         <div className="command">
-                            {isEmpty() ?
+                            {(!cart.length > 0) ?
                                 <div className="empty-msg text-poppins-light">Votre panier est vide</div>
                             :
                                 <div className="list">

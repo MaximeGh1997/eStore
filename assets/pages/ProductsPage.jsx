@@ -6,6 +6,7 @@ import Pagination from '../components/Pagination'
 import {toast} from 'react-toastify'
 import Rellax from 'rellax'
 import Cover from '../uploads/young-happy-couple-drinking-tasty-sweet-cocktails-at-tropical-bar-smiling-and-having-fun-bright-clothes-and-positive-emotions.jpg'
+import CardLoader from '../components/loaders/CardLoader'
 
 const ProductsPage = (props) => {
 
@@ -18,11 +19,14 @@ const ProductsPage = (props) => {
 
     const {addItem} = useContext(CartContext)
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const fetchProducts = async () => {
         try {
             const data = await productsAPI.findByPage(itemsPerPage, currentPage)
             setProducts(data['hydra:member'])
             setTotalItems(data['hydra:totalItems'])
+            setIsLoading(false)
         } catch (error) {
             toast.error('Impossible de charger les produits, veuillez reéssayer ultèrieurement...')
         }
@@ -61,13 +65,27 @@ const ProductsPage = (props) => {
                     <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>
                 </div>
                 <div className="row">
-                {products.map(product => (
-                        <Product
-                            key={product.id}
-                            product={product}
-                            addItem={addItem}
-                        />
-                    ))} 
+                {(!isLoading) ? (
+                    <>
+                        {products.map(product => (
+                            <Product
+                                key={product.id}
+                                product={product}
+                                addItem={addItem}
+                                isLoading={isLoading}
+                            />
+                        ))}
+                    </>
+                ) : (
+                    <>
+                        <CardLoader/>
+                        <CardLoader/>
+                        <CardLoader/>
+                        <CardLoader/>
+                        <CardLoader/>
+                        <CardLoader/>
+                    </>
+                )} 
                 </div>
                 <Pagination
                     currentPage={currentPage}

@@ -6,6 +6,7 @@ import {toast} from 'react-toastify'
 import {Link} from 'react-router-dom'
 import Rellax from 'rellax'
 import Img from '../uploads/bartender-preparing-cocktail-at-counter.jpg'
+import CardLoader from '../components/loaders/CardLoader'
 
 const HomePage = (props) => {
 
@@ -13,10 +14,13 @@ const HomePage = (props) => {
 
     const {addItem} = useContext(CartContext)
 
+    const [isLoading, setIsLoading] = useState(true)
+
     const fetchNewProducts = async () => {
         try {
             const data = await productsAPI.findLasts()
             setNewProducts(data)
+            setIsLoading(false)
         } catch (error) {
             toast.warning('Impossible de charger les nouveautées... Rééssayer ultèrieurement')
         }
@@ -58,13 +62,23 @@ const HomePage = (props) => {
 
                     <h1 className="text-center mb-5 title">Nouveautées</h1>
                     <div className="row">
-                        {newProducts.map(product => (
-                            <Product
-                                key={product.id}
-                                product={product}
-                                addItem={addItem}
-                            />
-                        ))}
+                        {(!isLoading) ? (
+                            <>
+                                {newProducts.map(product => (
+                                    <Product
+                                        key={product.id}
+                                        product={product}
+                                        addItem={addItem}
+                                    />
+                                ))}
+                            </>
+                        ) : (
+                            <>
+                                <CardLoader/>
+                                <CardLoader/>
+                                <CardLoader/>
+                            </>
+                        )}
                     </div>
                     <div className="row justify-content-center">
                         <Link to='/products' className='btn btn-outline-primary'>Voir plus</Link>

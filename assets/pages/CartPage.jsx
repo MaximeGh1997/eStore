@@ -4,6 +4,7 @@ import Cart from '../components/Cart'
 import Field from '../components/forms/Field'
 import ordersAPI from '../services/ordersAPI'
 import {toast} from 'react-toastify'
+import Loader from 'react-loader-spinner'
 
 const CartPage = (props) => {
 
@@ -32,13 +33,7 @@ const CartPage = (props) => {
 
     const [checked, setChecked] = useState(false)
 
-    const isEmpty = () => {
-        if (cart.length > 0) {
-            return false
-        } else {
-            return true
-        }
-    }
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleChange = (e) => {
         const {name, value} = e.currentTarget
@@ -51,6 +46,7 @@ const CartPage = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         if (checked !== true) {
             toast.error('Veuillez accepter les conditions d\'utilisation !')
             return
@@ -62,12 +58,15 @@ const CartPage = (props) => {
             props.history.push('/products')
         } catch ({response}) {
             if (response.data.type == 'cart_violations') {
+                setIsLoading(false)
                 toast.error(response.data.title)
             }
             else if (response.data.type == 'checked_violations') {
+                setIsLoading(false)
                 toast.error(response.data.title)
             }
             else if(response.data.type == 'buyer_violations') {
+                setIsLoading(false)
                 const {errors} = response.data
                 const formErrors = []
                 errors.forEach(({propertyPath, message}) => {
@@ -89,7 +88,7 @@ const CartPage = (props) => {
                 </div>
                 <Cart isOnPage = {true} />
             </div>
-                {isEmpty() ?
+                {(!cart.length > 0) ?
                     <></>
                 :
                 <>
@@ -185,7 +184,16 @@ const CartPage = (props) => {
                                 <input type="checkbox" className="form-check-input" id="accept" checked={checked} onChange={() => handleCheckedChange()} />
                                 <label className="form-check-label text-dark text-poppins" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
                             </div>
-                            <button type="submit" className="btn btn-success text-poppins-light mb-5">Envoyer</button>
+                            <div className="row">
+                                <button type="submit" className="btn btn-success text-poppins-light mr-3 mb-5">Envoyer</button>
+                                <Loader
+                                    visible={isLoading}
+                                    type="ThreeDots"
+                                    color="#b3b3b3"
+                                    height={40}
+                                    width={40}
+                                />
+                            </div>
                         </form> 
                     </div>
                 </div>

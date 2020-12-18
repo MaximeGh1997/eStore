@@ -3,6 +3,7 @@ import Field from '../../components/forms/Field'
 import authAPI from '../../services/authAPI'
 import AuthContext from '../../contexts/AuthContext'
 import {toast} from 'react-toastify'
+import Loader from 'react-loader-spinner'
 
 const LoginPage = (props) => {
 
@@ -15,6 +16,8 @@ const LoginPage = (props) => {
 
     const [error, setError] = useState('')
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleChange = (e) => {
         const {name, value} = e.currentTarget
         setCredentials({...credentials, [name]: value})
@@ -22,6 +25,7 @@ const LoginPage = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
         try {
             await authAPI.authenticate(credentials)
             setIsAuthenticated(true)
@@ -31,6 +35,7 @@ const LoginPage = (props) => {
             toast.success('Vous êtes connecté')
             props.history.push('/admin/lasts-orders')
         } catch (error) {
+            setIsLoading(false)
             setError('Verifiez vos informations de connexion')
             toast.error('Nom d\'utilisateur ou mot de passe incorrect !')
         }
@@ -79,6 +84,15 @@ const LoginPage = (props) => {
                             />
                             <div className="row justify-content-center form-group">
                                 <button className="btn btn-success text-poppins mt-3">Connexion</button>
+                            </div>
+                            <div className="row justify-content-center">
+                                <Loader
+                                    visible={isLoading}
+                                    type="ThreeDots"
+                                    color="#b3b3b3"
+                                    height={50}
+                                    width={50}
+                                />
                             </div>
                         </form>
                     </div>

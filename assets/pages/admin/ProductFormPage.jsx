@@ -3,6 +3,8 @@ import productsAPI from '../../services/productsAPI'
 import Field from '../../components/forms/Field'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
+import FormLoader from '../../components/loaders/FormLoader'
+import Loader from 'react-loader-spinner'
 
 const ProductFormPage = ({match, history}) => {
 
@@ -24,10 +26,15 @@ const ProductFormPage = ({match, history}) => {
 
     const [editing, setEditing] = useState(false)
 
+    const [isLoading, setIsLoading] = useState(false)
+
+    const [saveLoader, setSaveLoader] = useState(false)
+
     const fetchProduct = async (id) => {
         try {
             const {name, description, price, picture} = await productsAPI.find(id)
             setProduct({name, description, price, picture})
+            setIsLoading(false)
         } catch (error) {
             toast.error('Impossible de charger le produit demandé...')
         }
@@ -35,6 +42,7 @@ const ProductFormPage = ({match, history}) => {
 
     useEffect(() => {
         if (id !== 'new') {
+            setIsLoading(true)
             fetchProduct(id)
             setEditing(true)
         }
@@ -47,7 +55,7 @@ const ProductFormPage = ({match, history}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setSaveLoader(true)
         try {
             if (editing) {
                 await productsAPI.update(id, product)
@@ -59,6 +67,7 @@ const ProductFormPage = ({match, history}) => {
                 history.push('/admin/products')
             }
         } catch ({response}) {
+            setSaveLoader(false)
             const {violations} = response.data
             if (violations) {
                 const formErrors = {}
@@ -78,7 +87,8 @@ const ProductFormPage = ({match, history}) => {
                 <div className="d-flex justify-content-start align-items-center">
                     {editing ? <h1 className="text-poppins-bold mb-4">Modification du produit: {product.name}</h1> : <h1 className="text-poppins-bold mb-4">Ajout d'un produit</h1>}
                 </div>
-                <form onSubmit={handleSubmit}>
+                {(!isLoading) ? (
+                    <form onSubmit={handleSubmit}>
                     <Field
                         type="text"
                         name="name"
@@ -128,8 +138,23 @@ const ProductFormPage = ({match, history}) => {
                     <div className="form-group">
                         <button type="submit" className="btn btn-success text-poppins mr-2">Enregistrer</button>
                         <Link to="/admin/products" className="btn btn-secondary text-poppins">Retour aux produits</Link>
+                        <Loader
+                            visible={saveLoader}
+                            type="ThreeDots"
+                            color="#b3b3b3"
+                            height={40}
+                            width={40}
+                        />
                     </div>
                 </form>
+                ) : (
+                    <>
+                        <FormLoader/>
+                        <div className="form-group">
+                            <Link to="/admin/products" className="btn btn-secondary text-poppins">Retour aux produits</Link>
+                        </div>
+                    </>
+                )}
             </div>   
         </div>
         </>
