@@ -61,9 +61,7 @@ const ProductsPage = (props) => {
         </div>
         <div className="box-content bg-dark" id="cocktails">
            <div className="container slide pb-5">
-                <div className="d-flex justify-content-start align-items-center">
-                    <h1 className="text-poppins-bold mb-5">Nos cocktails</h1>
-                </div>
+                <h1 className="text-poppins-bold text-center text-md-left mb-5">Nos cocktails</h1>
                 <div className="row">
                 {(!isLoading) ? (
                     <>

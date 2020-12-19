@@ -48,6 +48,7 @@ const CartPage = (props) => {
         e.preventDefault()
         setIsLoading(true)
         if (checked !== true) {
+            setIsLoading(false)
             toast.error('Veuillez accepter les conditions d\'utilisation !')
             return
         }

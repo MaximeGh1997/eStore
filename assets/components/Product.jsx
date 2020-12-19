@@ -36,7 +36,7 @@ const Product = (props) => {
     return (
         <>
         <div className="col-md-6 col-lg-4 mb-5 justify-content-center">
-            <div className="product-card">
+            <div className="product-card text-center text-md-left">
                 <div className="product-img">
                     <img src={props.product.picture} />
                 </div>
@@ -44,7 +44,7 @@ const Product = (props) => {
                 <h4 className="product-title">{props.product.name}</h4>
                 <p className="product-desc">{props.product.description}</p>
                 <h5 className="product-price">{props.product.price}€</h5>
-                <div className="actions">
+                <div className="actions mt-3">
                     <div className="row justify-content-center">
                         <Button variant="outline-primary" onClick={() => decrease(quantity)}>-</Button>
                         <span className="align-self-center ml-3 mr-3"> { quantity } </span>

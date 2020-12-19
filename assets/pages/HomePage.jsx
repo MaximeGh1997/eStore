@@ -49,11 +49,11 @@ const HomePage = (props) => {
 
             <div className="box-content bg-dark">
                 <div className="container pb-5">
-                    <div className="row slide">
-                        <div className="col-md-7 col-lg-5 align-self-center picture">
+                    <div className="row slide justify-content-md-between">
+                        <div className="col-md-6 align-self-center mb-3 mb-md-0 picture">
                             <img src={Img} alt=""/>
                         </div>
-                        <div className="col-md-4 col-lg-6 offset-1 align-self-center">
+                        <div className="col-md-5 align-self-center text-center text-md-left mb-5 mb-md-0 p-3 p-md-0">
                             <h1 className="text-poppins-bold mb-3">Qui sommes nous ?</h1>
                             <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
                             <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>

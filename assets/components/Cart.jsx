@@ -81,7 +81,8 @@ const Cart = (props) => {
             <>
                 <div className="shopping" onMouseLeave={() => closeCart()}>
                     <Link to="/cart">
-                        <div id="cartBtn" onMouseEnter={() => openCart()}><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
+                        <div className="d-none d-md-block" id="cartBtn" onMouseEnter={() => openCart()}><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
+                        <div className="d-block d-md-none" id="cartBtn"><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
                     </Link>
 
                        <div className="cart">
