@@ -1,34 +1,35 @@
 import axios from 'axios'
+import {API_URL} from '../config'
 
 function findByPage (itemsPerPage, currentPage) {
-    return axios.get(`http://127.0.0.1:8000/api/products/?pagination=true&count=${itemsPerPage}&page=${currentPage}`)
+    return axios.get(`${API_URL}/products/?pagination=true&count=${itemsPerPage}&page=${currentPage}`)
                 .then(response => response.data)
 }
 
 function findAll () {
-    return axios.get("http://127.0.0.1:8000/api/products")
+    return axios.get(`${API_URL}/products`)
                 .then(response => response.data['hydra:member'])
 }
 
 function find (id) {
-    return axios.get(`http://127.0.0.1:8000/api/products/${id}`)
+    return axios.get(`${API_URL}/products/${id}`)
                 .then(response => response.data)
 }
 
 function deleteProduct (id) {
-    return axios.delete(`http://127.0.0.1:8000/api/products/${id}`)
+    return axios.delete(`${API_URL}/products/${id}`)
 }
 
 function updateProduct (id, product) {
-    return axios.put(`http://127.0.0.1:8000/api/products/${id}`, product)
+    return axios.put(`${API_URL}/products/${id}`, product)
 }
 
 function createProduct (product) {
-    return axios.post("http://127.0.0.1:8000/api/products", product)
+    return axios.post(`${API_URL}/products`, product)
 }
 
 function findLastsProducts () {
-    return axios.get('http://127.0.0.1:8000/api/products?order[createdAt]=desc')
+    return axios.get(`${API_URL}/products?order[createdAt]=desc`)
         .then (response => response.data['hydra:member'].slice(0,3))
 }
 

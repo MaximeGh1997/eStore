@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {API_URL} from '../config'
+import {DOMAIN_URL} from '../config'
 
 function send (cart, buyer, checked) {
     let orderData = new FormData()
@@ -6,7 +8,7 @@ function send (cart, buyer, checked) {
     orderData.append('buyer', JSON.stringify(buyer))
     orderData.append('checked', checked)
 
-    return axios.post('http://127.0.0.1:8000/orders/create', orderData, {
+    return axios.post(`${DOMAIN_URL}/orders/create`, orderData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
@@ -15,27 +17,27 @@ function send (cart, buyer, checked) {
 }
 
 function findByPage (itemsPerPage, currentPage) {
-    return axios.get(`http://127.0.0.1:8000/api/orders/?pagination=true&count=${itemsPerPage}&page=${currentPage}`)
+    return axios.get(`${API_URL}/orders/?pagination=true&count=${itemsPerPage}&page=${currentPage}`)
                 .then(response => response.data)
 }
 
 function findAll () {
-    return axios.get('http://127.0.0.1:8000/api/orders')
+    return axios.get(`${API_URL}/orders`)
                 .then(response => response.data['hydra:member'])
 }
 
 function find (id) {
-    return axios.get(`http://127.0.0.1:8000/api/orders/${id}`)
+    return axios.get(`${API_URL}/orders/${id}`)
                 .then(response => response.data)
 }
 
 function findLasts (itemsPerPage, currentPage) {
-    return axios.get(`http://127.0.0.1:8000/api/orders/?status=EN+COURS&pagination=true&count=${itemsPerPage}&page=${currentPage}`)
+    return axios.get(`${API_URL}/orders/?status=EN+COURS&pagination=true&count=${itemsPerPage}&page=${currentPage}`)
                 .then(response => response.data)
 }
 
 function setStatus (id, status) {
-    return axios.put(`http://127.0.0.1:8000/api/orders/${id}`, {
+    return axios.put(`${API_URL}/orders/${id}`, {
         status: status
     })
 }
