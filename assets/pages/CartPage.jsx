@@ -84,9 +84,7 @@ const CartPage = (props) => {
     return (
         <>
             <div className="container pb-5">
-                <div className="d-flex justify-content-start align-items-center">
-                    <h1 className="mb-5 text-poppins-bold">Mon panier</h1>
-                </div>
+                <h1 className="mb-5 text-poppins-bold">Mon panier</h1>
                 <Cart isOnPage = {true} />
             </div>
                 {(!cart.length > 0) ?
@@ -95,9 +93,7 @@ const CartPage = (props) => {
                 <>
                 <div className="slide bg-primary">
                     <div className="container">
-                        <div className="d-flex justify-content-start align-items-center">
-                            <h1 className="mt-5 mb-3 text-poppins-bold text-dark">Valider ma commande</h1>
-                        </div>
+                        <h1 className="mb-3 text-poppins-bold text-dark">Valider ma commande</h1>
                         <form onSubmit={handleSubmit}>
                             <Field
                                 type="text"
@@ -185,7 +181,7 @@ const CartPage = (props) => {
                                 <input type="checkbox" className="form-check-input" id="accept" checked={checked} onChange={() => handleCheckedChange()} />
                                 <label className="form-check-label text-dark text-poppins" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
                             </div>
-                            <div className="row">
+                            <div className="row pl-3">
                                 <button type="submit" className="btn btn-success text-poppins-light mr-3 mb-5">Envoyer</button>
                                 <Loader
                                     visible={isLoading}

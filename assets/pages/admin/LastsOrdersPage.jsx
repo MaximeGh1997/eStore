@@ -52,7 +52,8 @@ const LastOrdersPage = (props) => {
                     <>
                     {(orders.length > 0) ? (
                         <>
-                        <Table borderless striped className="text-poppins mb-3">
+                        <div className="table-responsive">
+                            <Table borderless striped className="text-poppins mb-3">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -86,13 +87,14 @@ const LastOrdersPage = (props) => {
                                 ))}
                             </tbody>
                         </Table>
+                        </div>
                         <Pagination
                             currentPage={currentPage}
                             itemsPerPage={itemsPerPage}
                             length={totalItems}
                             onPageChanged={handlePageChange}
                         />
-                        </>  
+                        </>
                     ) : (
                         <div className="empty-cart">
                             <h3 className="text-poppins-bold text-dark text-center">Pas de nouvelles commandes</h3>

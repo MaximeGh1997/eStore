@@ -54,7 +54,7 @@ const LoginPage = (props) => {
            <div className="container pb-5">
             {isAuthenticated ?
                 <div className="row">
-                    <div className="col-6 offset-3 mt-5">
+                    <div className="col-md-6 offset-md-3 mt-5">
                         <h3 className="text-poppins-bold text-dark text-center mb-3">Vous êtes déjà connecté</h3>
                         <div className="row justify-content-center">
                            <button className="btn btn-danger text-poppins" onClick={() => handleLogout()}>Déconnexion</button> 

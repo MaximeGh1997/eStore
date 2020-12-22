@@ -65,6 +65,7 @@ const ProductsPage = (props) => {
                 <Link to="/admin/products/new" className="btn btn-success text-poppins mb-3">Ajouter un produit</Link>
                 {(!isLoading) ? (
                     <>
+                    <div className="table-responsive">
                         <Table borderless striped className="text-poppins mb-3">
                             <thead>
                                 <tr>
@@ -82,7 +83,7 @@ const ProductsPage = (props) => {
                                         <td>{product.name}</td>
                                         <td className="text-center">{product.price}€</td>
                                         <td className="text-center">{formatDate(product.createdAt)}</td>
-                                        <td className="text-center">
+                                        <td className="row justify-content-center text-center">
                                             <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
                                             <Button variant="danger" onClick={() => {if(window.confirm('Supprimer ce produit ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
                                         </td>
@@ -90,6 +91,7 @@ const ProductsPage = (props) => {
                                 ))}
                             </tbody>
                         </Table>
+                    </div>
                         <Pagination
                             currentPage={currentPage}
                             itemsPerPage={itemsPerPage}

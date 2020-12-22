@@ -18,9 +18,12 @@ const Nav = (props) => {
     }
 
     return (
-        <nav className="navbar navbar-expand navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <NavLink className="navbar-brand" to="/">eStore</NavLink>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <NavLink className="nav-link text-poppins" to="/">Accueil</NavLink>
@@ -49,7 +52,7 @@ const Nav = (props) => {
                     }
                 </ul>
                 {isAuthenticated ?
-                    <button className="btn btn-danger text-poppins" onClick={() => handleLogout()}>Déconnexion</button>
+                    <button className="btn btn-danger text-poppins mt-2 mt-md-0" onClick={() => handleLogout()}>Déconnexion</button>
                 :
                     <></>
                 }

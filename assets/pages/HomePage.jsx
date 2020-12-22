@@ -60,7 +60,7 @@ const HomePage = (props) => {
                         </div>
                     </div>
 
-                    <h1 className="text-center mb-5 title">Nouveautées</h1>
+                    <h1 className="text-center mb-5 text-poppins-bold">Nouveautées</h1>
                     <div className="row">
                         {(!isLoading) ? (
                             <>
@@ -81,7 +81,7 @@ const HomePage = (props) => {
                         )}
                     </div>
                     <div className="row justify-content-center">
-                        <Link to='/products' className='btn btn-outline-primary'>Voir plus</Link>
+                        <Link to='/products' className='btn btn-outline-primary text-poppins'>Voir plus</Link>
                     </div>
                 </div> 
             </div>

@@ -9,7 +9,6 @@ import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom'
 import { HashRouter, Switch, Route, withRouter } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
@@ -31,13 +30,17 @@ import ScrollToTop from './components/ScrollToTop'
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
+
+import 'bootstrap/dist/js/bootstrap'
+import $ from 'jquery'
+import Popper from 'popper.js'
 
 console.log('Hello Webpack Encore! Edit me in assets/app.js');
 authAPI.setup()

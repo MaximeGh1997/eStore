@@ -36,22 +36,21 @@ const Product = (props) => {
     return (
         <>
         <div className="col-md-6 col-lg-4 mb-5 justify-content-center">
-            <div className="product-card text-center text-md-left">
-                <div className="product-img">
+            <div className="text-center text-md-left">
+                <div className="product-img mx-auto mb-3">
                     <img src={props.product.picture} />
                 </div>
-                
-                <h4 className="product-title">{props.product.name}</h4>
-                <p className="product-desc">{props.product.description}</p>
-                <h5 className="product-price">{props.product.price}€</h5>
-                <div className="actions mt-3">
+                <h3 className="text-poppins-bold">{props.product.name}</h3>
+                <p className="product-desc text-poppins-light">{props.product.description}</p>
+                <h5 className="text-poppins-light">{props.product.price}€</h5>
+                <div className="mt-4">
                     <div className="row justify-content-center">
-                        <Button variant="outline-primary" onClick={() => decrease(quantity)}>-</Button>
+                        <button className="btn btn-outline-primary" onClick={() => decrease(quantity)}>-</button>
                         <span className="align-self-center ml-3 mr-3"> { quantity } </span>
-                        <Button variant="outline-primary" onClick={() => increase(quantity)}>+</Button>  
+                        <button className="btn btn-outline-primary" onClick={() => increase(quantity)}>+</button> 
                     </div>
                     <div className="row justify-content-center">
-                        <Button variant="outline-primary" className="mt-2" onClick={() => handleAddToCart(props.product, quantity)}>Ajouter au panier</Button>
+                        <button className="btn btn-outline-primary text-poppins mt-3" onClick={() => handleAddToCart(props.product, quantity)}>Ajouter au panier</button>
                     </div>
                 </div>
             </div>

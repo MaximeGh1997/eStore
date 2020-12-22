@@ -87,6 +87,7 @@ const OrdersPage = (props) => {
                 </Select>
                 {(!isLoading) ? (
                     <>
+                    <div className="table-responsive">
                         <Table borderless striped className="text-poppins mb-3">
                             <thead>
                                 <tr>
@@ -121,6 +122,7 @@ const OrdersPage = (props) => {
                                 ))}
                             </tbody>
                         </Table>
+                    </div>
                         <Pagination
                             currentPage={currentPage}
                             itemsPerPage={itemsPerPage}

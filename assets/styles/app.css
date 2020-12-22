@@ -2,8 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
 html, body {
-    width: 100%;
-    height: 100%;
+    font-size: 1em;
 }
 
 body {
@@ -120,14 +119,13 @@ footer a:hover {
     background-size: cover;
     padding-top: 15%;
     padding-bottom: 15%;
-}
-
-.jumbotron {
     text-shadow: 2px 1px 4px black;
 }
 
-.picture {
-    height: 550px;
+@media all and (max-width: 500px) {
+    h1 {
+        font-size: 2rem;
+    }
 }
 
 .picture img {
@@ -150,41 +148,33 @@ footer a:hover {
     object-fit: cover;
 }
 
-.product-card {
-    height: 100%;
-}
-
 .product-img {
     width: 250px;
     height: 250px;
-    border-radius: 250px;
+    border-radius: 100%;
     border:rgb(255, 245, 107) 3px solid;
-    margin: 0 auto;
 }
 
 .product-img img {
     width: 100%;
     height: 100%;
-    border-radius: 250px;
+    border-radius: 100%;
     object-fit: cover;
 }
 
-.product-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 26px;
-    margin-top: 20px;
+@media all and (max-width: 500px) {
+    .product-img {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .product-desc {
+        min-height: auto !important;
+    }
 }
 
 .product-desc {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    min-height: 100px;
-}
-
-.product-price {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
+    min-height: 80px;
 }
 
 /* Cart */
@@ -210,6 +200,12 @@ footer a:hover {
 
 .small-cart button{
     font-size: 12px;
+}
+
+@media all and (max-width: 500px) {
+    table {
+        font-size: 12px;
+    }
 }
 
 .shopping {

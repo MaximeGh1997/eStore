@@ -41,20 +41,21 @@ const Cart = (props) => {
                 <div className="empty-cart">
                     <h3 className="text-poppins text-center mb-3">Votre panier est vide</h3>
                     <div className="row justify-content-center">
-                        <Link to='/products' className='btn btn-outline-primary'>Voir les cocktails</Link>
+                        <Link to='/products' className='btn btn-outline-primary text-poppins'>Voir les cocktails</Link>
                     </div>
                 </div>   
                 </>
             :
             <>
-            <Table borderless variant="custom" className="text-poppins">
+            <div className="table-responsive">
+               <Table borderless variant="custom" className="text-poppins">
                 <thead>
                     <tr>
-                        <th>Produit</th>
-                        <th className="text-center">Quantité</th>
-                        <th className="text-center">Prix</th>
-                        <th className="text-center">Total</th>
-                        <th></th>
+                        <th scope="col">Produit</th>
+                        <th scope="col" className="text-center">Quantité</th>
+                        <th scope="col" className="text-center">Prix</th>
+                        <th scope="col" className="text-center">Total</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +74,8 @@ const Cart = (props) => {
                         <td className="text-center"><Button variant="outline-primary" size="sm" onClick={() => {if(window.confirm('Vider votre panier ?')){clearCart()}}}>Vider mon panier</Button></td>
                     </tr>
                 </tbody>
-            </Table>
+            </Table> 
+            </div>
             </>
             }
             </>

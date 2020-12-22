@@ -27,10 +27,10 @@ const Item = (props) => {
         <>
         <tr key={props.item}>
             <td>{props.item.product.name}</td>
-            <td className="text-center">
-                <Button variant="outline-primary" className="mr-3" size="sm" onClick={() => decrease(props.item)}>-</Button>
+            <td className="row justify-content-center text-center">
+                <Button variant="outline-primary" className="mr-1 mr-md-3" size="sm" onClick={() => decrease(props.item)}>-</Button>
                 <span>{props.item.quantity}</span>
-                <Button variant="outline-primary" className="ml-3" size="sm" onClick={() => increase(props.item)}>+</Button>
+                <Button variant="outline-primary" className="ml-1 ml-md-3" size="sm" onClick={() => increase(props.item)}>+</Button>
             </td>
             <td className="text-center">{props.item.product.price}€</td>
             <td className="text-center">{props.item.total} €</td>
