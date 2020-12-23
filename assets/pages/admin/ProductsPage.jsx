@@ -83,7 +83,7 @@ const ProductsPage = (props) => {
                                         <td>{product.name}</td>
                                         <td className="text-center">{product.price}€</td>
                                         <td className="text-center">{formatDate(product.createdAt)}</td>
-                                        <td className="row justify-content-center text-center">
+                                        <td className="justify-content-center text-center">
                                             <Link to={`/admin/products/${product.id}`} className="btn btn-warning mr-2"><i className="fas fa-edit"></i></Link>
                                             <Button variant="danger" onClick={() => {if(window.confirm('Supprimer ce produit ?')) {handleDelete(product.id, product.name)}}}><i className="fas fa-trash"></i></Button>
                                         </td>

@@ -66,7 +66,7 @@ footer a:hover {
 .btn-outline-primary:hover {
     background-color: rgb(255, 245, 107);
     border-color: rgb(255, 245, 107);
-    color: black;
+    color: black !important;
 }
 
 .bg-primary {
@@ -83,6 +83,18 @@ footer a:hover {
 
 .container {
     padding-top: 100px;
+}
+
+.border-primary {
+    border-color: rgb(255, 245, 107) !important;
+}
+
+.bg-yellow {
+    background-color: rgb(255, 245, 107);
+}
+
+.rounded {
+    border-radius: 0.60rem !important;
 }
 
 /* Pagination */
@@ -126,13 +138,6 @@ footer a:hover {
     h1 {
         font-size: 2rem;
     }
-}
-
-.picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center left;
 }
 
 /* Products page */
@@ -186,26 +191,20 @@ footer a:hover {
 
 /* Table */
 
-.table-custom {
-    color: white;
-    border: 1px solid rgb(255, 245, 107);
-    border-radius: 50px;
-    padding: 20px;
-    border-collapse: initial;
-}
-
-.small-cart {
-    font-size: 14px;
-}
-
-.small-cart button{
-    font-size: 12px;
-}
-
 @media all and (max-width: 500px) {
     table {
         font-size: 12px;
     }
+}
+
+.item .actions i {
+    color: rgb(255, 245, 107);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.item .actions i:hover {
+    color: rgb(212, 203, 73);
 }
 
 .shopping {

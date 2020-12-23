@@ -25,17 +25,46 @@ const Item = (props) => {
 
     return (
         <>
-        <tr key={props.item}>
-            <td>{props.item.product.name}</td>
-            <td className="row justify-content-center text-center">
-                <Button variant="outline-primary" className="mr-1 mr-md-3" size="sm" onClick={() => decrease(props.item)}>-</Button>
-                <span>{props.item.quantity}</span>
-                <Button variant="outline-primary" className="ml-1 ml-md-3" size="sm" onClick={() => increase(props.item)}>+</Button>
-            </td>
-            <td className="text-center">{props.item.product.price}€</td>
-            <td className="text-center">{props.item.total} €</td>
-            <td className="text-center"><Button variant="outline-primary" size="sm" onClick={() => {if(window.confirm('Supprimer ce produit ?')){remove(props.item)}}}>Supprimer</Button></td>
-        </tr>
+        {props.isOnPage ?
+            <>
+            <div className="row justify-content-between mb-2 item" key={props.item}>
+                <div className="col-9 col-sm-3">
+                    <h4 className="text-poppins-bold mb-2">{props.item.product.name}</h4>
+                    <div className="align-items-center actions">
+                        <i className="fas fa-minus-circle fa-sm" onClick={() => decrease(props.item)}></i>
+                        <span className="ml-2 mr-2 text-poppins">{props.item.quantity}</span>
+                        <i className="fas fa-plus-circle fa-sm" onClick={() => increase(props.item)}></i>
+                    </div>
+                </div>
+                <div className="col-3 col-sm text-poppins align-self-center text-center"><p className="h5">{props.item.product.price}€</p></div>
+                <div className="d-none d-sm-block col text-poppins align-self-center text-center"><p className="h5">{props.item.total}€</p></div>
+                <div className="col align-self-center text-left mt-2 text-sm-center mt-sm-0">
+                    <button className="btn btn-outline-primary" onClick={() => {if(window.confirm('Supprimer ce produit ?')){remove(props.item)}}}>
+                        <i className="fas fa-trash-alt fa-xs"></i>
+                    </button>
+                </div>
+            </div>
+            <hr className="mb-3 bg-yellow"/>
+            </>
+            :
+            <>
+            <div className="row justify-content-between mb-2 item" key={props.item}>
+                <div className="col-9">
+                    <p className="text-poppins-bold mb-2">{props.item.product.name}</p>
+                    <div className="align-items-center actions">
+                        <i className="fas fa-minus-circle fa-sm" onClick={() => decrease(props.item)}></i>
+                        <span className="ml-2 mr-2 text-poppins">{props.item.quantity}</span>
+                        <i className="fas fa-plus-circle fa-sm" onClick={() => increase(props.item)}></i>
+                    </div>
+                </div>
+                <div className="col-3 text-poppins align-self-center text-center"><p>{props.item.product.price}€</p></div>
+                <div className="col align-self-center text-left mt-2 actions">
+                    <i className="fas fa-trash-alt fa-xs" onClick={() => {if(window.confirm('Supprimer ce produit ?')){remove(props.item)}}}></i>
+                </div>
+            </div>
+            <hr className="mb-3 bg-yellow"/>
+            </>
+        }
         </>
     )
 }

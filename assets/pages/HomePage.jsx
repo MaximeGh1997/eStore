@@ -50,8 +50,8 @@ const HomePage = (props) => {
             <div className="box-content bg-dark">
                 <div className="container pb-5">
                     <div className="row slide justify-content-md-between">
-                        <div className="col-md-6 align-self-center mb-3 mb-md-0 picture">
-                            <img src={Img} alt=""/>
+                        <div className="col-md-6 align-self-center mb-3 mb-md-0">
+                            <img className="img-fluid" src={Img} alt=""/>
                         </div>
                         <div className="col-md-5 align-self-center text-center text-md-left mb-5 mb-md-0 p-3 p-md-0">
                             <h1 className="text-poppins-bold mb-3">Qui sommes nous ?</h1>

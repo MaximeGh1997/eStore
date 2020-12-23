@@ -47,34 +47,19 @@ const Cart = (props) => {
                 </>
             :
             <>
-            <div className="table-responsive">
-               <Table borderless variant="custom" className="text-poppins">
-                <thead>
-                    <tr>
-                        <th scope="col">Produit</th>
-                        <th scope="col" className="text-center">Quantité</th>
-                        <th scope="col" className="text-center">Prix</th>
-                        <th scope="col" className="text-center">Total</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="border border-primary rounded p-5">
                     {cart.map(item => (
                         <>
                             <Item
                                 item={item}
                                 updateItem={updateItem}
                                 removeItem={removeItem}
+                                isOnPage={props.isOnPage}
                             />
                         </>
                     ))}
-                    <tr>
-                        <td colSpan="3">Total panier</td>
-                        <td className="text-center">{getTotal()} €</td>
-                        <td className="text-center"><Button variant="outline-primary" size="sm" onClick={() => {if(window.confirm('Vider votre panier ?')){clearCart()}}}>Vider mon panier</Button></td>
-                    </tr>
-                </tbody>
-            </Table> 
+                    <p className="text-poppins-light mt-3 text-right">Total panier : <span className="font-weight-bold">{getTotal()} €</span></p>
+                    <button className="btn btn-outline-primary btn-sm text-poppins-light float-right mb-3" onClick={() => {if(window.confirm('Vider votre panier ?')){clearCart()}}}>Vider mon panier</button>             
             </div>
             </>
             }
@@ -82,46 +67,35 @@ const Cart = (props) => {
         :
             <>
                 <div className="shopping" onMouseLeave={() => closeCart()}>
+                    <div className="d-none d-md-block" id="cartBtn" onMouseEnter={() => openCart()}>
+                        <i className="fas fa-shopping-cart"></i>
+                        <span>{cart.length}</span>
+                    </div>
                     <Link to="/cart">
-                        <div className="d-none d-md-block" id="cartBtn" onMouseEnter={() => openCart()}><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
                         <div className="d-block d-md-none" id="cartBtn"><i className="fas fa-shopping-cart"></i><span>{cart.length}</span></div>
                     </Link>
 
-                       <div className="cart">
+                    <div className="cart">
                         <div className="command">
                             {(!cart.length > 0) ?
-                                <div className="empty-msg text-poppins-light">Votre panier est vide</div>
+                                <span className="text-poppins-light border border-primary rounded p-2">Votre panier est vide</span>
                             :
                                 <div className="list">
-                                    <Table borderless variant="custom" className="small-cart text-poppins-light">
-                                        <thead>
-                                            <tr>
-                                                <th>Produit</th>
-                                                <th className="text-center">Quantité</th>
-                                                <th className="text-center">Prix</th>
-                                                <th className="text-center">Total</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {cart.map(item => (
-                                                <>
-                                                    <Item
-                                                        item={item}
-                                                        updateItem={updateItem}
-                                                        removeItem={removeItem}
-                                                    />
-                                                </>
-                                            ))}
-                                            <tr>
-                                                <td colSpan="3">Total panier</td>
-                                                <td className="text-center">{getTotal()} €</td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                    <div className="row justify-content-center">
-                                       <Link to="/cart" className="btn btn-outline-primary">Mon panier</Link> 
+                                    <div className="border border-primary rounded p-3">
+                                        {cart.map(item => (
+                                            <>
+                                                <Item
+                                                    item={item}
+                                                    updateItem={updateItem}
+                                                    removeItem={removeItem}
+                                                    isOnPage={props.isOnPage}
+                                                />
+                                            </>
+                                        ))}
+                                        <p className="text-poppins-light mt-3 text-right">Total panier : <span className="font-weight-bold">{getTotal()} €</span></p>         
+                                    </div>
+                                    <div className="row justify-content-center mt-2">
+                                       <Link to="/cart" className="btn btn-sm btn-outline-primary text-poppins">Mon panier</Link> 
                                     </div>
                                 </div>
                             }
