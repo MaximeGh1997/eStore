@@ -92,7 +92,7 @@ const Cart = (props) => {
                                                 />
                                             </>
                                         ))}
-                                        <p className="text-poppins-light mt-3 text-right">Total panier : <span className="font-weight-bold">{getTotal()} €</span></p>         
+                                        <p className="text-poppins-light mt-3 mb-0 text-right">Total panier : <span className="font-weight-bold">{getTotal()} €</span></p>         
                                     </div>
                                     <div className="row justify-content-center mt-2">
                                        <Link to="/cart" className="btn btn-sm btn-outline-primary text-poppins">Mon panier</Link> 

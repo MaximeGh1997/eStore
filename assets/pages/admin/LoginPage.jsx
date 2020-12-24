@@ -63,7 +63,7 @@ const LoginPage = (props) => {
                 </div>
             :
                 <div className="row">
-                    <div className="col-6 offset-3 mt-5">
+                    <div className="col-md-6 offset-md-3 mt-5">
                         <h3 className="text-poppins-bold text-center text-dark mb-3">Connexion à l'administration</h3>
                         <form onSubmit={handleSubmit}>
                             <Field 

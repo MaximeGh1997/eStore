@@ -31,6 +31,7 @@ const ProductsPage = (props) => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         fetchProducts()
     }, [currentPage])
 
@@ -100,7 +101,7 @@ const ProductsPage = (props) => {
                         />
                     </>
                 ) : (
-                    <TableLoader/>
+                    <TableLoader style={{ width: '100%' }}/>
                 )}
             </div>  
         </div>

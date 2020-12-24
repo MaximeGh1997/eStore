@@ -131,7 +131,7 @@ const OrdersPage = (props) => {
                         />
                     </>
                 ) : (
-                    <TableLoader/>
+                    <TableLoader style={{ width: '100%' }}/>
                 )}
                 
             </div>

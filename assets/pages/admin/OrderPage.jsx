@@ -71,29 +71,26 @@ const OrderPage = ({match}) => {
             {(!isLoading) ? (
                 <>
                     <h1 className="text-poppins-bold mb-4">Commande n°{order.id}</h1>
-                    <div className="row justify-content-center">
-                        <div className="status row col-auto justify-content-between mb-4">
-                            <div className="row form-group mr-3">
-                                <span className="text-poppins col-4">Statut:</span>
-                                <select name="status" id="status" className="col-8 form-control text-poppins" value={status} onChange={handleChange}>
-                                    <>
-                                    {STATUS.map(s =>  <option key={s.name} value={s.title}>{s.title}</option> )}
-                                    </> 
-                                </select>
-                            </div>
-                            <button className="btn btn-success text-poppins ml-3 mr-3" onClick={() => handleClick(order.id, status)}>Mettre à jour</button>
-                            <Loader
-                                visible={statusLoader}
-                                type="ThreeDots"
-                                color="#b3b3b3"
-                                height={40}
-                                width={40}
-                            />
-                        </div>
+                    <div className="justify-content-center mb-4 form-inline">
+                        <span className="text-poppins align-self-center mr-2">Statut:</span>
+                        <select name="status" id="status" className="col-auto form-control text-poppins" value={status} onChange={handleChange}>
+                            <>
+                            {STATUS.map(s =>  <option key={s.name} value={s.title}>{s.title}</option> )}
+                            </> 
+                        </select>
+                        <button className="btn btn-success text-poppins ml-3 mr-3 mt-2 mt-md-0" onClick={() => handleClick(order.id, status)}>Mettre à jour</button>
+                        <Loader
+                            visible={statusLoader}
+                            type="ThreeDots"
+                            color="#b3b3b3"
+                            height={40}
+                            width={40}
+                        />
                     </div>
             
                     <h3 className="mt-2 mb-4 text-poppins-bold">Détail de la commande</h3>
-                    <Table className="text-poppins mb-5">
+                    <div className="table-responsive">
+                       <Table className="text-poppins mb-5">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -120,10 +117,11 @@ const OrderPage = ({match}) => {
                                 <td className="text-center">{order.total}€</td>
                             </tr>
                         </tbody>
-                    </Table>
+                    </Table> 
+                    </div>
                     
                     <h3 className="mt-2 mb-5 text-poppins-bold">Informations sur la commande</h3>
-                        <div className="col-6 offset-3 mt-2 text-poppins">
+                        <div className="col-sm-6 offset-sm-3 mt-2 text-poppins">
                             <dl className="row">
                                 <dt className="col-sm-3 mb-2"><h5>Date</h5></dt>
                                 <dd className="col-sm-9 text-right font-italic mb-2"><h6>{formatDate(order.createdAt)}</h6></dd>

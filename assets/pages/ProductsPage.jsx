@@ -15,7 +15,7 @@ const ProductsPage = (props) => {
     //pour pagination
     const [currentPage, setCurrentPage] = useState(1)
     const [totalItems, setTotalItems] = useState(0)
-    const itemsPerPage = 12
+    const itemsPerPage = 6
 
     const {addItem} = useContext(CartContext)
 
@@ -33,6 +33,7 @@ const ProductsPage = (props) => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         fetchProducts()
     }, [currentPage])
 

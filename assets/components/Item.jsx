@@ -48,21 +48,20 @@ const Item = (props) => {
             </>
             :
             <>
-            <div className="row justify-content-between mb-2 item" key={props.item}>
-                <div className="col-9">
-                    <p className="text-poppins-bold mb-2">{props.item.product.name}</p>
+            <div className="row justify-content-between item" key={props.item}>
+                <div className="col-auto mr-2">
+                    <p className="text-poppins-bold mb-0">{props.item.product.name} <span className="text-poppins-light"> - {props.item.product.price}€</span></p>
                     <div className="align-items-center actions">
                         <i className="fas fa-minus-circle fa-sm" onClick={() => decrease(props.item)}></i>
                         <span className="ml-2 mr-2 text-poppins">{props.item.quantity}</span>
                         <i className="fas fa-plus-circle fa-sm" onClick={() => increase(props.item)}></i>
                     </div>
                 </div>
-                <div className="col-3 text-poppins align-self-center text-center"><p>{props.item.product.price}€</p></div>
-                <div className="col align-self-center text-left mt-2 actions">
+                <div className="col-auto text-right actions">
                     <i className="fas fa-trash-alt fa-xs" onClick={() => {if(window.confirm('Supprimer ce produit ?')){remove(props.item)}}}></i>
                 </div>
             </div>
-            <hr className="mb-3 bg-yellow"/>
+            <hr className="mb-2 bg-yellow"/>
             </>
         }
         </>

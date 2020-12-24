@@ -149,7 +149,7 @@ const ProductFormPage = ({match, history}) => {
                 </form>
                 ) : (
                     <>
-                        <FormLoader/>
+                        <FormLoader style={{ width: '100%' }}/>
                         <div className="form-group">
                             <Link to="/admin/products" className="btn btn-secondary text-poppins">Retour aux produits</Link>
                         </div>

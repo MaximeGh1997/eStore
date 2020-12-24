@@ -17,6 +17,11 @@ const Nav = (props) => {
         props.history.replace('/admin/login')
     }
 
+    const closeMenu = () => {
+        const menu = document.getElementById('navbarNav')
+        menu.classList.remove('show')
+    }
+
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
             <NavLink className="navbar-brand" to="/">eStore</NavLink>
@@ -26,24 +31,24 @@ const Nav = (props) => {
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <NavLink className="nav-link text-poppins" to="/">Accueil</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/" onClick={() => closeMenu()}>Accueil</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link text-poppins" to="/products">Cocktails</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/products" onClick={() => closeMenu()}>Cocktails</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link text-poppins" to="/cart">Mon panier</NavLink>
+                        <NavLink className="nav-link text-poppins" to="/cart" onClick={() => closeMenu()}>Mon panier</NavLink>
                     </li>
                     {isAdmin ?
                         <>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-poppins" to="/admin/lasts-orders">Nouvelles commandes</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/lasts-orders" onClick={() => closeMenu()}>Nouvelles commandes</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-poppins" to="/admin/orders">Commandes</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/orders" onClick={() => closeMenu()}>Commandes</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link text-poppins" to="/admin/products">Produits</NavLink>
+                                <NavLink className="nav-link text-poppins" to="/admin/products" onClick={() => closeMenu()}>Produits</NavLink>
                             </li>
                         </>
                     :

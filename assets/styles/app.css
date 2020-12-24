@@ -218,8 +218,8 @@ footer a:hover {
     font-family: arial;
     position: absolute;
     display: block;
-    right: -20px;
-    bottom: -70px;
+    right: -45px;
+    bottom: -65px;
     width: 80px;
     height: 80px;
     background:  rgb(12, 12, 12);
@@ -284,11 +284,20 @@ footer a:hover {
     padding-bottom:20px;
 }
 
-.status {
-    height: 40px;
-    line-height: 40px;
-}
+@media all and (max-width: 500px) {
+    .shopping #cartBtn {
+        right: -70px;
+        bottom: -70px;
+        width: 70px;
+        height: 70px;
+    }
 
-.status button {
-    height: 40px;
+    .shopping #cartBtn span {
+        bottom: 2px;
+        right: 2px;
+    }
+
+    .shopping #cartBtn:hover {
+        transform: none;
+    }
 }

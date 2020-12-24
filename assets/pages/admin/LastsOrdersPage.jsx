@@ -29,6 +29,7 @@ const LastOrdersPage = (props) => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         fetchOrders()
     }, [currentPage])
 
@@ -102,7 +103,7 @@ const LastOrdersPage = (props) => {
                     )}
                     </>
                 ) : (
-                    <TableLoader/>
+                    <TableLoader style={{ width: '100%' }}/>
                 )}
             </div> 
         </div>
