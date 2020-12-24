@@ -30,7 +30,7 @@ class OrderDetails
 
     /**
      * @ORM\ManyToOne(targetEntity=Products::class, inversedBy="orderDetails")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      * @Groups({"orders_read"})
      */
     private $product;

@@ -49,7 +49,7 @@ class Products
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups({"products_read"})
-     * @Assert\Length(min=20, max="400", minMessage="La description du produit doit faire plus de 20 caractères", maxMessage="Le description du produit ne doit pas dépasser 400 caractères")
+     * @Assert\Length(min=15, max="140", minMessage="La description du produit doit faire plus de 15 caractères", maxMessage="Le description du produit ne doit pas dépasser 140 caractères")
      */
     private $description;
 

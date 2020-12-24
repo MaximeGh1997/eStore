@@ -42,8 +42,8 @@ const HomePage = (props) => {
         <>
             <div className="h-60 jumbotron jumbotron-fluid">
                 <div className="container">
-                    <h1 className="text-poppins-bold display-4">Fluid jumbotron</h1>
-                    <p className="text-poppins-light lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <h1 className="text-archivo display-4">DrinkStore</h1>
+                    <p className="text-poppins-light lead">Bienvenue sur Drink Store, découvrez nos différents cocktails et passez votre commande en ligne !</p>
                 </div>
             </div>
 
@@ -55,8 +55,8 @@ const HomePage = (props) => {
                         </div>
                         <div className="col-md-5 align-self-center text-center text-md-left mb-5 mb-md-0 p-3 p-md-0">
                             <h1 className="text-poppins-bold mb-3">Qui sommes nous ?</h1>
-                            <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis est quos quis dolor tempora modi exercitationem maiores eum autem ad architecto, praesentium itaque laboriosam voluptate doloribus, esse id, iste vitae explicabo aliquam consequuntur! Minus doloremque quaerat rerum sint, consequuntur labore?</p>
-                            <p className="text-poppins-light font-italic">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum laudantium omnis dolor explicabo non aliquid nisi architecto corrupti rerum saepe!</p>
+                            <p className="text-poppins-light font-italic">Drink Store est le fruit d'une expérience ReactJS, parcourez une plateforme web intuitive et mettez à disposition vos produits.</p>
+                            <p className="text-poppins-light font-italic">Nous proposons ici une carte de cocktails à commander en ligne, vous recevrez chaque commande et ses informations instantanément</p>
                         </div>
                     </div>
 

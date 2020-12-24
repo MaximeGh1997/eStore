@@ -10,11 +10,10 @@ const Footer = (props) => {
             <div className="container text-center text-md-left text-dark pt-3 pb-3">
                 <div className="row">
                     <div className="col-md-6 mt-md-0 mt-3">
-                        <h5 className="text-uppercase font-weight-bold">Cocktails store</h5>
+                        <h5 className="text-uppercase text-archivo">DrinkStore</h5>
                         
-                        <p className="font-weight-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-                        harum esse fugiat. Itaque, culpa?</p>
+                        <p className="font-weight-light">Drink Store est le fruit d'une expérience ReactJS, parcourez une plateforme web intuitive et mettez à disposition vos produits.</p>
+                        <p className="font-weight-light">Ce site est une plateforme commerciale fictive</p>
                     </div>
                 
                     <hr className="clearfix w-100 d-md-none pb-3" />

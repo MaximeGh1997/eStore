@@ -24,7 +24,7 @@ const Nav = (props) => {
 
     return (
         <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
-            <NavLink className="navbar-brand" to="/">eStore</NavLink>
+            <NavLink className="navbar-brand" to="/">Drink<span>Store</span></NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>

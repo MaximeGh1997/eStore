@@ -179,7 +179,7 @@ const CartPage = (props) => {
                             </div>
                             <div className="form-check mb-3">
                                 <input type="checkbox" className="form-check-input" id="accept" checked={checked} onChange={() => handleCheckedChange()} />
-                                <label className="form-check-label text-dark text-poppins" htmlFor="accept">Je certifie sur l'honneur que les informations ci-dessus sont correctes</label>
+                                <label className="form-check-label text-dark text-poppins" htmlFor="accept">J'accepte les conditions d'utilisation et certifie que mes informations sont correctes</label>
                             </div>
                             <div className="row pl-3">
                                 <button type="submit" className="btn btn-success text-poppins-light mr-3 mb-5">Envoyer</button>
