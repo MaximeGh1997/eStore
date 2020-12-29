@@ -55,8 +55,8 @@ const HomePage = (props) => {
                         </div>
                         <div className="col-md-5 align-self-center text-center text-md-left mb-5 mb-md-0 p-3 p-md-0">
                             <h1 className="text-poppins-bold mb-3">Qui sommes nous ?</h1>
-                            <p className="text-poppins-light font-italic">Drink Store est le fruit d'une expérience ReactJS, parcourez une plateforme web intuitive et mettez à disposition vos produits.</p>
-                            <p className="text-poppins-light font-italic">Nous proposons ici une carte de cocktails à commander en ligne, vous recevrez chaque commande et ses informations instantanément</p>
+                            <p className="text-poppins-light font-italic">Drink Store est le fruit d'une expérience ReactJS, offrant a son administrateur une plateforme web intuitive lui permettant de mettre en vente ses produits.</p>
+                            <p className="text-poppins-light font-italic">Nous proposons ici une carte de cocktails à commander en ligne...</p>
                         </div>
                     </div>
 
