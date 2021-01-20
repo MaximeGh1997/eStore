@@ -8,7 +8,6 @@
 /public/bundles/
 /var/
 /vendor/
-/config/packages/security.yaml
 /src/DataFixtures/
 ###< symfony/framework-bundle ###
 
